@@ -1,0 +1,12 @@
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+*.tsbuildinfo
+.DS_Store
+
+# Large lunar datasets are intentionally excluded
+*.bin
+*.tif
+*.glb
