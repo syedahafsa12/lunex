@@ -10,3 +10,4 @@ out/
 *.bin
 *.tif
 *.glb
+next-env.d.ts
