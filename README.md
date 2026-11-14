@@ -1,4 +1,4 @@
-# LunaPath Backend
+# Lunex Backend
 
 Initial backend foundation for lunar landing-site discovery.
 
