@@ -1122,22 +1122,18 @@ function TargetPanel({
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <span
-            className={`h-2.5 w-2.5 rounded-full ${
+            className={\`h-2.5 w-2.5 rounded-full \${
               isSun ? "bg-amber-300" : "bg-white/75"
-            }`}
+            }\`}
           />
-
           <h3
-            className={`text-sm font-semibold tracking-[0.16em] ${
-              isSun
-                ? "text-amber-200"
-                : "text-white/85"
-            }`}
+            className={\`text-sm font-semibold tracking-[0.16em] \${
+              isSun ? "text-amber-200" : "text-white/85"
+            }\`}
           >
             {name}
           </h3>
         </div>
-
         <span className="text-[9px] text-white/30">
           {target?.time ?? "No observation"}
         </span>
@@ -1154,112 +1150,86 @@ function TargetPanel({
               label="Azimuth"
               value={formatAngle(target.azimuthDeg)}
             />
-
             <Metric
               label="Elevation"
               value={formatAngle(target.elevationDeg)}
             />
-
             <Metric
               label="Angular diameter"
-              value={formatNumber(
-                target.angularDiameterArcsec,
-                3,
-              )}
+              value={formatNumber(target.angularDiameterArcsec, 3)}
               unit="arcsec"
             />
-
             <Metric
               label="Terrain clearance"
-              value={formatAngle(
-                visibility?.clearanceDeg ?? null,
-              )}
+              value={formatAngle(visibility?.clearanceDeg ?? null)}
             />
           </div>
 
-          <div className="mt-5">
-            <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/35">
-              Geometric horizon
-            </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl border border-white/[0.07] bg-black/20 p-3">
+              <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.15em] text-white/35">
+                Geometric horizon
+              </p>
+              <StatusPill tone={target.elevationDeg < 0 ? "red" : "neutral"}>
+                {getGeometricHorizonLabel(target.elevationDeg)}
+              </StatusPill>
+            </div>
 
-            <StatusPill
-              tone={
-                target.elevationDeg < 0
-                  ? "red"
-                  : "neutral"
-              }
-            >
-              {getGeometricHorizonLabel(
-                target.elevationDeg,
-              )}
-            </StatusPill>
+            <div className="rounded-xl border border-white/[0.07] bg-black/20 p-3">
+              <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.15em] text-white/35">
+                Terrain visibility
+              </p>
+              <span
+                className={\`inline-flex rounded-lg border px-3 py-2 text-xs leading-5 \${
+                  getVisibilityStyle(visibility?.status)
+                }\`}
+              >
+                {getVisibilityLabel(visibility?.status)}
+              </span>
+            </div>
           </div>
 
-          <div className="mt-5">
-            <p className="mb-2 text-[9px] font-semibold uppercase tracking-[0.16em] text-white/35">
-              Terrain visibility
-            </p>
-
-            <span
-              className={`inline-flex rounded-lg border px-3 py-2 text-xs leading-5 ${getVisibilityStyle(
-                visibility?.status,
-              )}`}
-            >
-              {getVisibilityLabel(visibility?.status)}
-            </span>
-          </div>
-
-          <div className="mt-5 border-t border-white/[0.07] pt-2">
-            <DetailRow
-              label="Terrain horizon elevation"
-              value={formatAngle(
-                visibility?.terrainHorizonElevationDeg ?? null,
-              )}
-            />
-
-            <DetailRow
-              label="Target centre elevation"
-              value={formatAngle(
-                visibility?.targetElevationDeg ??
-                  target.elevationDeg,
-              )}
-            />
-
-            <DetailRow
-              label="Terrain clearance"
-              value={formatAngle(
-                visibility?.clearanceDeg ?? null,
-              )}
-            />
-
-            <DetailRow
-              label="Target disk visible"
-              value={
-                visibility?.targetDiskVisible === null ||
-                visibility?.targetDiskVisible === undefined
-                  ? "Undetermined"
-                  : visibility.targetDiskVisible
-                    ? "Yes, according to sampled terrain"
-                    : "No, below sampled terrain"
-              }
-            />
-
-            <DetailRow
-              label="Terrain coverage complete"
-              value={
-                visibility?.terrainCoverageComplete === true
-                  ? "Yes"
-                  : "No"
-              }
-            />
-
-            <DetailRow
-              label="Visibility status code"
-              value={
-                visibility?.status ?? "Unavailable"
-              }
-            />
-          </div>
+          <details className="group mt-5 border-t border-white/[0.07] pt-3">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-[10px] font-semibold uppercase tracking-[0.13em] text-white/50 hover:text-white/80">
+              Full terrain diagnostics
+              <span className="text-white/35 transition-transform group-open:rotate-180">⌄</span>
+            </summary>
+            <div className="pt-2">
+              <DetailRow
+                label="Terrain horizon elevation"
+                value={formatAngle(visibility?.terrainHorizonElevationDeg ?? null)}
+              />
+              <DetailRow
+                label="Target centre elevation"
+                value={formatAngle(
+                  visibility?.targetElevationDeg ?? target.elevationDeg,
+                )}
+              />
+              <DetailRow
+                label="Terrain clearance"
+                value={formatAngle(visibility?.clearanceDeg ?? null)}
+              />
+              <DetailRow
+                label="Target disk visible"
+                value={
+                  visibility?.targetDiskVisible === null ||
+                  visibility?.targetDiskVisible === undefined
+                    ? "Undetermined"
+                    : visibility.targetDiskVisible
+                      ? "Yes, according to sampled terrain"
+                      : "No, below sampled terrain"
+                }
+              />
+              <DetailRow
+                label="Terrain coverage complete"
+                value={visibility?.terrainCoverageComplete === true ? "Yes" : "No"}
+              />
+              <DetailRow
+                label="Visibility status code"
+                value={visibility?.status ?? "Unavailable"}
+              />
+            </div>
+          </details>
         </>
       )}
     </Panel>
@@ -1738,9 +1708,12 @@ function MissionDataDashboardContent() {
                 </h1>
 
                 <p className="mt-3 max-w-xl text-sm leading-6 text-white/40">
-                  Ephemeris, observer coordinates and
-                  terrain-horizon analysis for your selected
-                  lunar landing location.
+                  Compare Sun and Earth geometry at an exact lunar landing point,
+                  then scan the UTC day for potential simultaneous visibility
+                  against the available local terrain.
+                </p>
+                <p className="mt-2 text-[10px] leading-5 text-amber-100/45">
+                  Decision-support screening only — not a landing-safety, solar-power or communications certification.
                 </p>
               </div>
             </div>
@@ -1987,31 +1960,6 @@ function MissionDataDashboardContent() {
           </section>
         )}
 
-        {/* FULL-DAY JOINT VISIBILITY PLANNER */}
-
-        {hasValidObserverSelection && hasValidPlannerDate ? (
-          <JointVisibilityPlanner
-            date={dateDraft}
-            siteId={siteId}
-            latitude={String(latitudeValue)}
-            longitude={String(longitudeValue)}
-            pixelColumn={String(pixelColumnValue)}
-            pixelRow={String(pixelRowValue)}
-            onUseTime={handleUseRecommendedTime}
-          />
-        ) : hasValidObserverSelection ? (
-          <Panel className="mb-10">
-            <Eyebrow>
-              Daily visibility planner
-            </Eyebrow>
-
-            <p className="mt-3 text-sm text-white/55">
-              Waiting for a valid mission date before starting
-              the daily visibility analysis.
-            </p>
-          </Panel>
-        ) : null}
-
         {/* REQUEST STATUS */}
 
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-white/[0.07] bg-white/[0.018] px-4 py-3">
@@ -2127,7 +2075,7 @@ function MissionDataDashboardContent() {
                 number="01"
                 eyebrow="Celestial orientation"
                 title="Sun and Earth positioning"
-                description="Actual ephemeris bearings, angular dimensions and terrain-relative visibility for the selected observer and mission time."
+                description="Exact-epoch Sun and Earth bearings, angular dimensions and terrain-relative clearance at the selected observer. The full-day search is shown separately below."
               />
 
               <div className="grid gap-4 xl:grid-cols-[0.92fr_1.08fr]">
@@ -2158,7 +2106,14 @@ function MissionDataDashboardContent() {
 
             {/* 02 — OBSERVER POSITION */}
 
-            <section className="mb-10">
+            <details className="group mb-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.015]">
+<summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5">
+  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/65">02 / Selected landing position</span>
+  <span className="text-xs text-white/55">{observer ? `${formatNumber(observer.latitudeDeg, 6)}° · ${formatNumber(observer.longitudeEastDeg, 6)}° E` : "Observer unavailable"}</span>
+  <span className="text-[9px] uppercase tracking-[0.12em] text-[#c9b98e]/80">View coordinates ⌄</span>
+</summary>
+<div className="border-t border-white/[0.06] p-4 sm:p-6">
+
               <SectionHeading
                 number="02"
                 eyebrow="Observer coordinates"
@@ -2255,13 +2210,20 @@ function MissionDataDashboardContent() {
                   </p>
                 )}
               </Panel>
-            </section>
-
-            <SectionDivider />
+            
+</div>
+</details>
 
             {/* 03 — PRODUCT 78 TERRAIN MODEL */}
 
-            <section className="mb-10">
+            <details className="group mb-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.015]">
+<summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5">
+  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/65">03 / Terrain model</span>
+  <span className="text-xs text-white/55">{terrain ? `${formatNumber(terrain.resolutionMeters, 2)} m/pixel · ${formatCount(terrain.calculatedDirections)} directions` : "Terrain model unavailable"}</span>
+  <span className="text-[9px] uppercase tracking-[0.12em] text-amber-200/80">{terrain?.completeHorizonVerified ? "Coverage verified" : "Sampled coverage only"} · View details ⌄</span>
+</summary>
+<div className="border-t border-white/[0.06] p-4 sm:p-6">
+
               <SectionHeading
                 number="03"
                 eyebrow="Terrain analysis"
@@ -2401,12 +2363,12 @@ function MissionDataDashboardContent() {
 
                       <DetailRow
                         label="Reference frame"
-                        value={terrain.referenceFrame}
+                        value={terrain.referenceFrame ?? "MOON_ME · Product 78 metadata"}
                       />
 
                       <DetailRow
                         label="Ephemeris"
-                        value={terrain.ephemeris}
+                        value={terrain.ephemeris ?? "DE421 · Product 78 metadata"}
                       />
 
                       <DetailRow
@@ -2425,13 +2387,20 @@ function MissionDataDashboardContent() {
                   </p>
                 )}
               </Panel>
-            </section>
-
-            <SectionDivider />
+            
+</div>
+</details>
 
             {/* 04 — DATA PROVENANCE */}
 
-            <section className="mb-10">
+            <details className="group mb-4 overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.015]">
+<summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5">
+  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/65">04 / Scientific data provenance</span>
+  <span className="text-xs text-white/55">{data.sources?.ephemeris ?? "NASA/JPL Horizons"} · {data.sources?.localTerrain ?? "NASA LOLA Product 78"}</span>
+  <span className="text-[9px] uppercase tracking-[0.12em] text-[#c9b98e]/80">View sources ⌄</span>
+</summary>
+<div className="border-t border-white/[0.06] p-4 sm:p-6">
+
               <SectionHeading
                 number="04"
                 eyebrow="Data provenance"
@@ -2452,6 +2421,7 @@ function MissionDataDashboardContent() {
                     apparent-position observations for the
                     requested mission epoch.
                   </p>
+                  <a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#d7c89f]/80 hover:text-white">Open JPL Horizons ↗</a>
                 </Panel>
 
                 <Panel>
@@ -2467,11 +2437,40 @@ function MissionDataDashboardContent() {
                     positioning and sampled terrain-horizon
                     analysis.
                   </p>
+                  <a href="https://pgda.gsfc.nasa.gov/products/78" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#d7c89f]/80 hover:text-white">Open Product 78 archive ↗</a>
                 </Panel>
               </div>
-            </section>
+            
+</div>
+</details>
           </>
         )}
+
+        {/* FULL-DAY JOINT VISIBILITY PLANNER */}
+
+        {hasValidObserverSelection && hasValidPlannerDate ? (
+          <JointVisibilityPlanner
+            date={dateDraft}
+            siteId={siteId}
+            latitude={String(latitudeValue)}
+            longitude={String(longitudeValue)}
+            pixelColumn={String(pixelColumnValue)}
+            pixelRow={String(pixelRowValue)}
+            onUseTime={handleUseRecommendedTime}
+          />
+        ) : hasValidObserverSelection ? (
+          <Panel className="mb-10">
+            <Eyebrow>
+              Daily visibility planner
+            </Eyebrow>
+
+            <p className="mt-3 text-sm text-white/55">
+              Waiting for a valid mission date before starting
+              the daily visibility analysis.
+            </p>
+          </Panel>
+        ) : null}
+
 
         {/* FOOTER */}
 
