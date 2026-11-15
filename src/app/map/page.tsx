@@ -644,7 +644,7 @@ function SunEarthVisibility({
         addObserverParameters(query, observerLocation);
 
         const response = await fetch(
-          `/api/horizons/selected-location?${query.toString()}`,
+          `/api/horizons/mission-analysis?${query.toString()}`,
           {
             method: "GET",
             cache: "no-store",
@@ -764,7 +764,7 @@ function SunEarthVisibility({
           addObserverParameters(query, observerLocation);
 
           const response = await fetch(
-            `/api/horizons/selected-location?${query.toString()}`,
+            `/api/horizons/mission-analysis?${query.toString()}`,
             {
               method: "GET",
               cache: "no-store",
