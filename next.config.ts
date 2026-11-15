@@ -21,6 +21,15 @@ const nextConfig: NextConfig = {
       "./public/data/site23_malapert_massif/metadata.json",
       "./public/data/site23_malapert_massif/elevation.bin",
     ],
+
+    "/api/horizons/mission-analysis": [
+      "./public/data/site04_shackleton_rim/metadata.json",
+      "./public/data/site04_shackleton_rim/elevation.bin",
+      "./public/data/site11_de_gerlache_rim/metadata.json",
+      "./public/data/site11_de_gerlache_rim/elevation.bin",
+      "./public/data/site23_malapert_massif/metadata.json",
+      "./public/data/site23_malapert_massif/elevation.bin",
+    ],
     "/api/product78/science-sample": [
       "./public/data/site04_shackleton_rim/science-metadata.json",
       "./public/data/site04_shackleton_rim/elevation.bin",

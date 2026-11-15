@@ -2170,6 +2170,23 @@ export default function Lunar360Explorer({
     }
     return getFirstObservation(horizons?.targets?.earth);
   }, [horizons, selectedTimeUtc, earthObservations]);
+  const sunVisibleNow = Boolean(
+    sun && getSunlightFraction(sun) > 0
+  );
+  const earthVisibleNow = Boolean(
+    earth && canRenderCelestialDisk(earth)
+  );
+
+  const sunTerrainVerified = Boolean(
+    sun &&
+    sun.terrainVisibility.terrainCoverageComplete &&
+    sun.terrainVisibility.targetDiskVisible === true
+  );
+  const earthTerrainVerified = Boolean(
+    earth &&
+    earth.terrainVisibility.terrainCoverageComplete &&
+    earth.terrainVisibility.targetDiskVisible === true
+  );
 
   useEffect(() => {
     let active = true;
@@ -2359,6 +2376,64 @@ export default function Lunar360Explorer({
       {/* Verbose diagnostics moved intact to docs/archive/lunapath-explorer-diagnostics.jsx.txt for migration
           into Mission Data. Keep the live API/data logic above unchanged. */}
 
+      {/* Both celestial targets stay discoverable without covering the compass. */}
+      <section
+        aria-label="Sun and Earth visibility"
+        aria-live="polite"
+        className="pointer-events-none absolute left-5 top-5 z-40 w-[min(280px,calc(100vw-7rem))] rounded-xl border border-white/15 bg-black/65 p-3 text-white shadow-lg backdrop-blur-md"
+      >
+        <p className="text-[9px] font-semibold tracking-[0.18em] text-white/45">
+          CELESTIAL TARGET STATUS
+        </p>
+
+        <div className="mt-3 border-b border-white/10 pb-3">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold tracking-[0.14em]">SUN</span>
+            <span className={`text-[10px] font-semibold ${
+              !sun ? "text-white/40" : sunVisibleNow
+                ? sunTerrainVerified ? "text-emerald-300" : "text-amber-300"
+                : "text-rose-300"
+            }`}>
+              {!sun ? "NO JPL DATA" : sunVisibleNow ? "VISIBLE" : "NOT VISIBLE"}
+            </span>
+          </div>
+          <p className="mt-1 text-[9px] text-white/50">
+            {sun
+              ? `AZ ${sun.azimuthDeg.toFixed(1)}° · EL ${sun.elevationDeg.toFixed(1)}°`
+              : "Sun position unavailable"}
+          </p>
+          <p className="mt-1 text-[9px] text-white/40">
+            {!sun ? "Waiting for JPL observation" : sunTerrainVerified
+              ? "Terrain visibility verified"
+              : sunVisibleNow ? "Visible provisionally; terrain coverage incomplete"
+              : "Below or blocked by the assessed horizon"}
+          </p>
+        </div>
+
+        <div className="pt-3">
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-semibold tracking-[0.14em]">EARTH</span>
+            <span className={`text-[10px] font-semibold ${
+              !earth ? "text-white/40" : earthVisibleNow
+                ? earthTerrainVerified ? "text-emerald-300" : "text-amber-300"
+                : "text-rose-300"
+            }`}>
+              {!earth ? "NO JPL DATA" : earthVisibleNow ? "VISIBLE" : "NOT VISIBLE"}
+            </span>
+          </div>
+          <p className="mt-1 text-[9px] text-white/50">
+            {earth
+              ? `AZ ${earth.azimuthDeg.toFixed(1)}° · EL ${earth.elevationDeg.toFixed(1)}°`
+              : "Earth position unavailable"}
+          </p>
+          <p className="mt-1 text-[9px] text-white/40">
+            {!earth ? "Waiting for JPL observation" : earthTerrainVerified
+              ? "Terrain visibility verified"
+              : earthVisibleNow ? "Visible provisionally; terrain coverage incomplete"
+              : "Below geometric/terrain horizon or disk size unavailable"}
+          </p>
+        </div>
+      </section>
       {/* Minimal true-north compass: the scene remains the focus. */}
       <div
         aria-label={`Camera direction ${cameraHeading.toFixed(0)} degrees from true north`}
