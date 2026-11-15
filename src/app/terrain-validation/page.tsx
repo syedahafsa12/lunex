@@ -94,7 +94,7 @@ export default function TerrainValidationPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#111315] text-white p-8">
+    <main className="min-h-screen bg-[#0B3D91] text-white p-8">
       <div className="max-w-3xl mx-auto space-y-6">
         <p className="text-xs tracking-[0.25em] text-white/50">
           NASA LOLA · TERRAIN VALIDATION
@@ -112,7 +112,7 @@ export default function TerrainValidationPage() {
         <button
           onClick={runValidation}
           disabled={loading}
-          className="rounded-lg bg-white text-black px-5 py-3 text-sm font-medium disabled:opacity-50"
+          className="rounded-lg bg-[#FC3D21] text-white px-5 py-3 text-sm font-medium disabled:opacity-50"
         >
           {loading ? "Calculating..." : "Run terrain validation"}
         </button>

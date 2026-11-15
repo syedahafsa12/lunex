@@ -507,7 +507,7 @@ function TargetCard({
       </p>
 
       {href && (
-        <p className="mt-3 text-[9px] font-semibold tracking-[0.12em] text-[#d9c89d]/80">
+        <p className="mt-3 text-[9px] font-semibold tracking-[0.12em] text-[#FC3D21]/80">
           OPEN 360° VISUALIZATION ↗
         </p>
       )}
@@ -519,7 +519,7 @@ function TargetCard({
       <Link
         href={href}
         aria-label={`Open 360 degree visualization for ${name}`}
-        className={`block rounded-lg border p-4 transition hover:border-[#d6c18e]/50 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d6c18e]/70 ${containerStyle}`}
+        className={`block rounded-lg border p-4 transition hover:border-[#FC3D21]/50 hover:bg-white/[0.045] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FC3D21]/70 ${containerStyle}`}
       >
         {cardContent}
       </Link>
@@ -1112,13 +1112,13 @@ function SunEarthVisibility({
   return (
     <section
       id="sun-earth-status"
-      className="mt-6 overflow-hidden rounded-xl border border-white/[0.09] bg-[#0b0d0f]"
+      className="mt-6 overflow-hidden rounded-xl border border-white/[0.09] bg-[#082D68]"
     >
       {/* HEADER */}
 
       <div className="flex flex-wrap items-center justify-between gap-3 p-4 sm:p-5">
         <div>
-          <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-[#c9b98e]/75">
+          <p className="text-[9px] font-semibold uppercase tracking-[0.17em] text-[#FC3D21]/75">
             Mission visibility analysis
           </p>
 
@@ -1137,7 +1137,7 @@ function SunEarthVisibility({
           </span>
         ) : instantLoading ? (
           <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1.5 text-[9px] text-white/50">
-            <span className="h-2.5 w-2.5 animate-spin rounded-full border border-white/20 border-t-[#c9b98e]" />
+            <span className="h-2.5 w-2.5 animate-spin rounded-full border border-white/20 border-t-[#FC3D21]" />
             Checking
           </span>
         ) : instantError ? (
@@ -1166,7 +1166,7 @@ function SunEarthVisibility({
       {/* REQUIRE MAP SELECTION */}
 
       {!hasSelection ? (
-        <div className="mx-4 mb-4 rounded-lg border border-[#c9b98e]/20 bg-[#c9b98e]/[0.04] p-5 sm:mx-5">
+        <div className="mx-4 mb-4 rounded-lg border border-[#FC3D21]/20 bg-[#FC3D21]/[0.04] p-5 sm:mx-5">
           <div className="flex items-start gap-3">
             <span className="text-xl" aria-hidden="true">
               ⌖
@@ -1185,13 +1185,13 @@ function SunEarthVisibility({
                 below and click directly on its high-resolution Product 78 terrain map.
               </p>
 
-              <p className="mt-2 text-[10px] leading-5 text-[#d9c89d]/70">
+              <p className="mt-2 text-[10px] leading-5 text-[#FC3D21]/70">
                 No default coordinates are used. No Sun or Earth visibility data will be requested or displayed until you select a point.
               </p>
 
               <a
                 href="#local-terrain"
-                className="mt-4 inline-flex items-center gap-2 border border-[#d9c89d]/30 px-4 py-2.5 text-[10px] font-semibold tracking-[0.12em] text-[#e4d3a9] transition hover:bg-[#d9c89d]/[0.08]"
+                className="mt-4 inline-flex items-center gap-2 border border-[#FC3D21]/30 px-4 py-2.5 text-[10px] font-semibold tracking-[0.12em] text-[#FC3D21] transition hover:bg-[#FC3D21]/[0.08]"
               >
                 SELECT ON TERRAIN MAP
                 <span aria-hidden="true">↓</span>
@@ -1356,7 +1356,7 @@ function SunEarthVisibility({
 
               {dailyLoading ? (
                 <span className="inline-flex items-center gap-2 text-[9px] text-white/40">
-                  <span className="h-2.5 w-2.5 animate-spin rounded-full border border-white/20 border-t-[#c9b98e]" />
+                  <span className="h-2.5 w-2.5 animate-spin rounded-full border border-white/20 border-t-[#FC3D21]" />
                   Searching
                 </span>
               ) : dailyError ? (
@@ -1559,10 +1559,10 @@ export default function MapPage() {
   ======================================================= */
 
   return (
-    <main className="min-h-screen bg-[#08090b] text-[#f4f2ed]">
+    <main className="min-h-screen bg-[#0B3D91] text-[#FFFFFF]">
       {/* HEADER */}
 
-      <header className="sticky top-0 z-30 border-b border-white/[0.08] bg-[#08090b]/95 backdrop-blur-xl">
+      <header className="sticky top-0 z-30 border-b border-white/[0.08] bg-[#0B3D91]/95 backdrop-blur-xl">
         <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8">
           <Link href="/" className="flex items-center gap-3" aria-label="Lunex home">
             <Image
@@ -1607,7 +1607,7 @@ export default function MapPage() {
         {/* PAGE INTRODUCTION */}
 
         <section className="mb-8">
-          <p className="text-[10px] font-medium tracking-[0.28em] text-[#aaa99f]/65">
+          <p className="text-[10px] font-medium tracking-[0.28em] text-[#FFFFFF]/65">
             LUNAR LANDING INTELLIGENCE / MISSION 01
           </p>
 
@@ -1661,7 +1661,7 @@ export default function MapPage() {
                     handleSiteChange(nextSite.id);
                   }
                 }}
-                className="h-11 w-full rounded-lg border border-white/10 bg-[#111316] px-3 text-sm text-white outline-none focus:border-[#aaa99f]/60"
+                className="h-11 w-full rounded-lg border border-white/10 bg-[#082D68] px-3 text-sm text-white outline-none focus:border-[#FFFFFF]/60"
               >
                 {LANDING_SITES.map((site) => (
                   <option key={site.id} value={site.id}>
@@ -1684,7 +1684,7 @@ export default function MapPage() {
                 type="date"
                 value={missionDate}
                 onChange={(event) => setMissionDate(event.target.value)}
-                className="h-11 w-full rounded-lg border border-white/10 bg-[#111316] px-3 text-sm text-white outline-none [color-scheme:dark]"
+                className="h-11 w-full rounded-lg border border-white/10 bg-[#082D68] px-3 text-sm text-white outline-none [color-scheme:dark]"
               />
             </label>
 
@@ -1697,7 +1697,7 @@ export default function MapPage() {
                 type="time"
                 value={missionTime}
                 onChange={(event) => setMissionTime(event.target.value)}
-                className="h-11 w-full rounded-lg border border-white/10 bg-[#111316] px-3 text-sm text-white outline-none [color-scheme:dark]"
+                className="h-11 w-full rounded-lg border border-white/10 bg-[#082D68] px-3 text-sm text-white outline-none [color-scheme:dark]"
               />
             </label>
 
@@ -1709,7 +1709,7 @@ export default function MapPage() {
               <select
                 value={missionDuration}
                 onChange={(event) => setMissionDuration(event.target.value)}
-                className="h-11 w-full rounded-lg border border-white/10 bg-[#111316] px-3 text-sm text-white outline-none"
+                className="h-11 w-full rounded-lg border border-white/10 bg-[#082D68] px-3 text-sm text-white outline-none"
               >
                 {MISSION_DURATIONS.map((duration) => (
                   <option key={duration.value} value={duration.value}>
@@ -1740,7 +1740,7 @@ export default function MapPage() {
           className="mb-12 space-y-4"
         >
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#c9b98e]/75">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#FC3D21]/75">
               01 / Regional navigation
             </p>
 
@@ -1753,7 +1753,7 @@ export default function MapPage() {
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-[#0d0f11] p-3 sm:p-5">
+          <div className="rounded-xl border border-white/10 bg-[#082D68] p-3 sm:p-5">
             <MoonTrekMap
               onLocationSelect={(coordinate) =>
                 setRegionalCoordinate(coordinate)
@@ -1803,7 +1803,7 @@ export default function MapPage() {
           className="space-y-5"
         >
           <div>
-            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#c9b98e]/75">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-[#FC3D21]/75">
               02 / High-resolution terrain
             </p>
 
@@ -1825,8 +1825,8 @@ export default function MapPage() {
                   key={site.id}
                   className={`min-w-0 rounded-xl border p-3 transition-colors sm:p-4 ${
                     isActive
-                      ? "border-[#d6c18e]/60 bg-[#d6c18e]/[0.055]"
-                      : "border-white/10 bg-[#0d0f11]"
+                      ? "border-[#FC3D21]/60 bg-[#FC3D21]/[0.055]"
+                      : "border-white/10 bg-[#082D68]"
                   }`}
                 >
                   <button
@@ -1847,7 +1847,7 @@ export default function MapPage() {
                     <span
                       className={`rounded-md border px-2 py-1 text-[9px] tracking-wider ${
                         isActive
-                          ? "border-[#d6c18e]/50 bg-[#d6c18e]/10 text-[#e4d3a9]"
+                          ? "border-[#FC3D21]/50 bg-[#FC3D21]/10 text-[#FC3D21]"
                           : "border-white/10 text-white/40"
                       }`}
                     >
@@ -1881,7 +1881,7 @@ export default function MapPage() {
             {activeLocalLocation ? (
               <>
                 <div className="mt-3 flex flex-wrap items-center gap-2">
-                  <span className="rounded-md border border-[#d6c18e]/30 bg-[#d6c18e]/[0.07] px-3 py-1.5 text-xs text-[#e4d3a9]">
+                  <span className="rounded-md border border-[#FC3D21]/30 bg-[#FC3D21]/[0.07] px-3 py-1.5 text-xs text-[#FC3D21]">
                     {activeSite.name}
                   </span>
 
@@ -1947,7 +1947,7 @@ export default function MapPage() {
                     {missionDataHref && (
                       <Link
                         href={missionDataHref}
-                        className="inline-flex items-center gap-4 border border-[#d6c18e]/35 bg-[#d6c18e]/[0.06] px-5 py-4 text-[10px] tracking-[0.18em] text-[#e4d3a9] transition hover:border-[#d6c18e]/65 hover:bg-[#d6c18e]/[0.11]"
+                        className="inline-flex items-center gap-4 border border-[#FC3D21]/35 bg-[#FC3D21]/[0.06] px-5 py-4 text-[10px] tracking-[0.18em] text-[#FC3D21] transition hover:border-[#FC3D21]/65 hover:bg-[#FC3D21]/[0.11]"
                       >
                         OPEN MISSION DATA
                         <span aria-hidden="true">↗</span>
@@ -1968,7 +1968,7 @@ export default function MapPage() {
                   No landing position selected for {activeSite.name}.
                 </p>
 
-                <p className="mt-2 text-[10px] leading-5 text-[#d9c89d]/70">
+                <p className="mt-2 text-[10px] leading-5 text-[#FC3D21]/70">
                   Click anywhere inside the active Product 78 terrain map above to select your observer position and unlock the visibility analysis.
                 </p>
               </div>

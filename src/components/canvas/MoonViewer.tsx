@@ -54,8 +54,8 @@ class MoonErrorBoundary extends Component<
   render() {
     if (this.state.hasError) {
       return (
-        <div className="flex h-full min-h-[420px] w-full flex-col items-center justify-center bg-[#080a10] px-6 text-center">
-          <p className="text-[10px] tracking-[0.3em] text-red-300/70">
+        <div className="flex h-full min-h-[420px] w-full flex-col items-center justify-center bg-[#0B3D91] px-6 text-center">
+          <p className="text-[10px] tracking-[0.3em] text-[#FC3D21]/80">
             MODEL LOADING FAILED
           </p>
 
@@ -141,7 +141,7 @@ function MoonLoadingOverlay() {
   }
 
   return (
-    <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#080a10]">
+    <div className="absolute inset-0 z-20 flex items-center justify-center bg-[#0B3D91]">
       <div className="w-[min(280px,70vw)] text-center">
         <p className="text-[10px] tracking-[0.35em] text-white/50">
           LOADING LUNAR MODEL
@@ -180,7 +180,7 @@ function MoonLoadingOverlay() {
 function MoonScene() {
   return (
     <>
-      <color attach="background" args={["#080a10"]} />
+      <color attach="background" args={["#0B3D91"]} />
 
       <ambientLight intensity={1.15} />
 
@@ -259,7 +259,7 @@ export default function MoonViewer() {
 
   if (webglFailed) {
     return (
-      <div className="flex h-full min-h-[420px] items-center justify-center bg-[#080a10] px-6 text-center">
+      <div className="flex h-full min-h-[420px] items-center justify-center bg-[#0B3D91] px-6 text-center">
         <p className="text-xs tracking-[0.25em] text-white/60">
           WEBGL UNAVAILABLE — 3D VIEWER CANNOT START
         </p>
@@ -269,7 +269,7 @@ export default function MoonViewer() {
 
   return (
     <MoonErrorBoundary>
-      <div className="relative h-full min-h-[420px] w-full bg-[#080a10]">
+      <div className="relative h-full min-h-[420px] w-full bg-[#0B3D91]">
         <Canvas
           camera={{
             position: [0, 0, 6.8],
@@ -284,7 +284,7 @@ export default function MoonViewer() {
             powerPreference: "high-performance",
           }}
           onCreated={({ gl }) => {
-            gl.setClearColor("#080a10", 1);
+            gl.setClearColor("#0B3D91", 1);
             gl.domElement.dataset.lunarMoonCanvas = "true";
           }}
         >

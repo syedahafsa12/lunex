@@ -170,11 +170,11 @@ export default function SciencePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#08090b] px-5 py-8 text-[#f4f2ed] sm:px-8">
+    <main className="min-h-screen bg-[#0B3D91] px-5 py-8 text-[#f4f2ed] sm:px-8">
       <div className="mx-auto max-w-[1500px]">
         <header className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-[10px] tracking-[0.24em] text-white/35">LUNAPATH / SCIENCE</p>
+            <p className="text-[10px] tracking-[0.24em] text-white/35">LUNEX / SCIENCE</p>
             <h1 className="mt-2 text-3xl font-light">Landing-site comparison</h1>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-white/45">
               Compare only locally prepared Product78 sites using their registered reference observers and the same UTC date.
@@ -187,14 +187,14 @@ export default function SciencePage() {
           <div className="grid gap-4 sm:grid-cols-[1fr_2fr_auto] sm:items-end">
             <label className="block">
               <span className="mb-2 block text-[10px] tracking-wider text-white/40">MISSION DATE · UTC</span>
-              <input type="date" value={date} onChange={(event) => setDate(event.target.value)} className="h-11 w-full rounded-lg border border-white/10 bg-[#111316] px-3 text-sm text-white [color-scheme:dark]" />
+              <input type="date" value={date} onChange={(event) => setDate(event.target.value)} className="h-11 w-full rounded-lg border border-white/10 bg-[#082D68] px-3 text-sm text-white [color-scheme:dark]" />
             </label>
             <div>
               <p className="mb-2 text-[10px] tracking-wider text-white/40">READY PRODUCT78 DATASETS · SELECT 2–3</p>
               {loadingSites ? <p className="text-xs text-white/45">Checking prepared site assets…</p> : (
                 <div className="flex flex-wrap gap-2">
                   {sites.map((site) => (
-                    <label key={site.id} className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs ${selectedIds.includes(site.id) ? "border-[#d6c18e]/50 bg-[#d6c18e]/10 text-[#e9d9b6]" : "border-white/10 text-white/50"}`}>
+                    <label key={site.id} className={`flex items-center gap-2 rounded-lg border px-3 py-2 text-xs ${selectedIds.includes(site.id) ? "border-[#FC3D21]/50 bg-[#FC3D21]/10 text-[#FC3D21]" : "border-white/10 text-white/50"}`}>
                       <input type="checkbox" checked={selectedIds.includes(site.id)} disabled={!selectedIds.includes(site.id) && selectedIds.length >= 3} onChange={() => toggleSite(site.id)} />
                       {site.archiveSite} · {site.name}
                     </label>
@@ -202,7 +202,7 @@ export default function SciencePage() {
                 </div>
               )}
             </div>
-            <button type="button" disabled={loading || selectedSites.length < 2 || !date} onClick={() => void compare()} className="h-11 rounded-lg bg-[#e8e5dc] px-5 text-[10px] font-semibold tracking-wider text-black disabled:opacity-40">{loading ? "COMPARING…" : "COMPARE SITES"}</button>
+            <button type="button" disabled={loading || selectedSites.length < 2 || !date} onClick={() => void compare()} className="h-11 rounded-lg bg-[#FC3D21] px-5 text-[10px] font-semibold tracking-wider text-white disabled:opacity-40">{loading ? "COMPARING…" : "COMPARE SITES"}</button>
           </div>
           {error && <p className="mt-3 text-xs text-red-300">{error}</p>}
           {!loadingSites && sites.length < 2 && <p className="mt-3 text-xs text-amber-100/70">At least two local Product78 datasets must be prepared before a measured comparison is possible.</p>}
@@ -217,7 +217,7 @@ export default function SciencePage() {
             const known = profile.filter((direction) => direction.coverageStatus === "partial" && typeof direction.maxTerrainElevationAngleDeg === "number").length;
             const unknown = profile.length - known;
             return (
-              <article key={site.id} className="min-w-0 rounded-xl border border-white/10 bg-[#0d0f11] p-5">
+              <article key={site.id} className="min-w-0 rounded-xl border border-white/10 bg-[#082D68] p-5">
                 <div className="flex items-start justify-between gap-3">
                   <div><p className="text-[9px] tracking-[0.16em] text-white/35">{site.archiveSite} · NASA LOLA PRODUCT78</p><h2 className="mt-1 text-lg font-medium">{site.name}</h2></div>
                   <span className={`rounded-md border px-2 py-1 text-[9px] ${siteError ? "border-red-300/20 text-red-200" : "border-amber-200/20 text-amber-100"}`}>{siteError ? "UNAVAILABLE" : "PARTIAL MODEL"}</span>

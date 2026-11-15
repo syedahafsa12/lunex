@@ -142,7 +142,7 @@ function createLandingMarker() {
       position:absolute;
       width:24px;
       height:24px;
-      border:2px solid #22d3ee;
+      border:2px solid #FC3D21;
       border-radius:50%;
       box-shadow:0 0 12px rgba(34,211,238,0.8);
     "></div>
@@ -151,7 +151,7 @@ function createLandingMarker() {
       position:absolute;
       width:6px;
       height:6px;
-      background:#22d3ee;
+      background:#FC3D21;
       border:1px solid white;
       border-radius:50%;
     "></div>
@@ -361,14 +361,14 @@ export default function MoonTrekMap({
         </span>
       </div>
 
-      <div className="relative h-[620px] w-full overflow-hidden rounded-xl border border-white/10 bg-[#101214]">
+      <div className="relative h-[620px] w-full overflow-hidden rounded-xl border border-white/10 bg-[#082D68]">
         <div
           ref={mapElementRef}
           className="h-full w-full"
         />
 
         {mapError && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#101214] p-6">
+          <div className="absolute inset-0 flex items-center justify-center bg-[#082D68] p-6">
             <div className="max-w-md text-center">
               <p className="text-sm font-semibold text-red-400">
                 Moon Trek initialization failed
@@ -386,10 +386,10 @@ export default function MoonTrekMap({
         </div>
 
         {selectedCoordinate && (
-          <div className="pointer-events-none absolute right-3 top-3 rounded-lg border border-cyan-400/30 bg-black/80 px-3 py-2 backdrop-blur">
+          <div className="pointer-events-none absolute right-3 top-3 rounded-lg border border-red-400/30 bg-black/80 px-3 py-2 backdrop-blur">
             <div className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-cyan-400" />
-              <span className="text-[10px] font-semibold tracking-wider text-cyan-300">
+              <span className="h-2 w-2 rounded-full bg-red-400" />
+              <span className="text-[10px] font-semibold tracking-wider text-red-300">
                 LANDING TARGET SELECTED
               </span>
             </div>
@@ -400,7 +400,7 @@ export default function MoonTrekMap({
       <div className="rounded-xl border border-white/10 bg-white/[0.03] p-4">
         {selectedCoordinate ? (
           <>
-            <p className="text-[10px] tracking-[0.18em] text-cyan-300">
+            <p className="text-[10px] tracking-[0.18em] text-red-300">
               SELECTED LANDING COORDINATES
             </p>
 

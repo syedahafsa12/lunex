@@ -8,6 +8,7 @@ import {
   type FormEvent,
 } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
@@ -135,16 +136,16 @@ interface BearingSnapshot {
 ========================================================= */
 
 const panelClass =
-  "rounded-2xl border border-white/[0.085] bg-[#0d0e10] shadow-[0_18px_55px_rgba(0,0,0,0.20)]";
+  "rounded-2xl border border-white/[0.085] bg-[#082D68] shadow-[0_18px_55px_rgba(0,0,0,0.20)]";
 
 const inputClass =
-  "h-12 w-full rounded-xl border border-white/[0.10] bg-[#111214] px-4 text-sm text-white outline-none transition-all duration-200 [color-scheme:dark] hover:border-white/20 focus:border-[#c9b98e]/60 focus:ring-2 focus:ring-[#c9b98e]/10";
+  "h-12 w-full rounded-xl border border-white/[0.10] bg-[#0B347B] px-4 text-sm text-white outline-none transition-all duration-200 [color-scheme:dark] hover:border-white/20 focus:border-[#FC3D21]/60 focus:ring-2 focus:ring-[#FC3D21]/10";
 
 const secondaryButtonClass =
   "inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.025] px-4 text-xs font-medium text-white/75 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.07] hover:text-white active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40";
 
 const primaryButtonClass =
-  "inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#e8e5dc] px-5 text-xs font-semibold text-[#141414] shadow-[0_4px_16px_rgba(255,255,255,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_7px_24px_rgba(255,255,255,0.10)] active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0";
+  "inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#FC3D21] px-5 text-xs font-semibold text-[#FFFFFF] shadow-[0_4px_16px_rgba(255,255,255,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#FC3D21]/90 hover:shadow-[0_7px_24px_rgba(252,61,33,0.24)] active:translate-y-0 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0";
 
 /* =========================================================
    FORMATTERS + QUERY VALIDATION
@@ -420,7 +421,7 @@ function Eyebrow({
 }) {
   return (
     <div className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-white/40">
-      <span className="h-1 w-1 rounded-full bg-[#c9b98e]" />
+      <span className="h-1 w-1 rounded-full bg-[#FC3D21]" />
       {children}
     </div>
   );
@@ -486,7 +487,7 @@ function Metric({
   large?: boolean;
 }) {
   return (
-    <div className="group min-w-0 rounded-xl border border-white/[0.07] bg-[#090a0b] p-4 transition-all duration-200 hover:border-white/[0.15] hover:bg-[#101113]">
+    <div className="group min-w-0 rounded-xl border border-white/[0.07] bg-[#082D68] p-4 transition-all duration-200 hover:border-white/[0.15] hover:bg-[#0B347B]">
       <div className="text-[9px] font-medium uppercase tracking-[0.16em] text-white/40">
         {label}
       </div>
@@ -722,8 +723,8 @@ function SkyPositionPlot({
         >
           <defs>
             <radialGradient id="compassCore">
-              <stop offset="0%" stopColor="#202226" />
-              <stop offset="100%" stopColor="#0b0c0e" />
+              <stop offset="0%" stopColor="#0B347B" />
+              <stop offset="100%" stopColor="#0B347B" />
             </radialGradient>
           </defs>
 
@@ -731,7 +732,7 @@ function SkyPositionPlot({
             cx={center}
             cy={center}
             r="139"
-            fill="#090a0b"
+            fill="#082D68"
             stroke="#ffffff"
             strokeOpacity="0.11"
           />
@@ -750,7 +751,7 @@ function SkyPositionPlot({
             cy={center}
             r={markerRadius}
             fill="none"
-            stroke="#e5e0d2"
+            stroke="#FFFFFF"
             strokeWidth="1.2"
             strokeOpacity="0.35"
           />
@@ -790,7 +791,7 @@ function SkyPositionPlot({
               x2={tick.x2}
               y2={tick.y2}
               stroke={
-                tick.major ? "#d0cec6" : "#777777"
+                tick.major ? "#FFFFFF" : "#777777"
               }
               strokeOpacity={
                 tick.major ? 0.8 : 0.32
@@ -805,7 +806,7 @@ function SkyPositionPlot({
             x={center}
             y="14"
             textAnchor="middle"
-            fill="#f4f2ed"
+            fill="#FFFFFF"
             fontSize="12"
             fontWeight="700"
           >
@@ -851,7 +852,7 @@ function SkyPositionPlot({
               cy={previousSunPoint.y}
               r="8"
               fill="none"
-              stroke="#d6b66f"
+              stroke="#FC3D21"
               strokeWidth="1.3"
               strokeDasharray="2 2"
               opacity="0.55"
@@ -878,7 +879,7 @@ function SkyPositionPlot({
                 y1={center}
                 x2={sunPoint.x}
                 y2={sunPoint.y}
-                stroke="#d6b66f"
+                stroke="#FC3D21"
                 strokeWidth="1.8"
                 strokeOpacity="0.9"
                 strokeDasharray={
@@ -892,7 +893,7 @@ function SkyPositionPlot({
                 cx={sunPoint.x}
                 cy={sunPoint.y}
                 r="12"
-                fill="#d6b66f"
+                fill="#FC3D21"
                 fillOpacity="0.12"
               />
 
@@ -900,7 +901,7 @@ function SkyPositionPlot({
                 cx={sunPoint.x}
                 cy={sunPoint.y}
                 r="6"
-                fill="#d6b66f"
+                fill="#FC3D21"
                 stroke="#f3dfb0"
                 strokeWidth="1.5"
                 style={{
@@ -991,7 +992,7 @@ function SkyPositionPlot({
             cx={center}
             cy={center}
             r="5"
-            fill="#dedbd1"
+            fill="#FFFFFF"
           />
 
           <circle
@@ -999,7 +1000,7 @@ function SkyPositionPlot({
             cy={center}
             r="11"
             fill="none"
-            stroke="#dedbd1"
+            stroke="#FFFFFF"
             strokeOpacity="0.2"
           />
         </svg>
@@ -1672,8 +1673,8 @@ function MissionDataDashboardContent() {
   ======================================================= */
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#08090a] text-[#f4f2ed] selection:bg-[#c9b98e]/25 selection:text-white">
-      <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_50%_-20%,rgba(185,171,133,0.09),transparent_55%)]" />
+    <main className="min-h-screen overflow-hidden bg-[#0B3D91] text-[#FFFFFF] selection:bg-[#FC3D21]/25 selection:text-white">
+      <div className="pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(ellipse_at_50%_-20%,rgba(252,61,33,0.10),transparent_55%)]" />
 
       <div className="relative z-10 mx-auto max-w-[1500px] px-4 pb-12 pt-5 sm:px-6 lg:px-10">
 
@@ -1686,15 +1687,17 @@ function MissionDataDashboardContent() {
                 href="/"
                 className="group inline-flex items-center gap-3 transition-opacity duration-200 hover:opacity-75"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.045]">
-                  <span className="h-3 w-3 rounded-full border border-[#d7c89f] bg-[#d7c89f]/20 shadow-[0_0_18px_rgba(215,200,159,0.22)]" />
-                </span>
+                <Image
+                  src="/favicon.png"
+                  alt="Lunex"
+                  width={36}
+                  height={36}
+                  priority
+                  className="h-9 w-9 object-contain"
+                />
 
                 <span className="text-sm font-semibold tracking-[0.19em]">
-                  LUNA
-                  <span className="font-light text-white/40">
-                    PATH
-                  </span>
+                  LUNEX
                 </span>
               </Link>
 
@@ -2053,7 +2056,7 @@ function MissionDataDashboardContent() {
         {loading && !data && hasValidObserverSelection && (
           <Panel className="mb-8 py-16 text-center">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035]">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/15 border-t-[#d6c18e]" />
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/15 border-t-[#FC3D21]" />
             </div>
 
             <p className="mt-5 text-sm font-medium text-white/75">
@@ -2110,7 +2113,7 @@ function MissionDataDashboardContent() {
 <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5">
   <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/65">02 / Selected landing position</span>
   <span className="text-xs text-white/55">{observer ? `${formatNumber(observer.latitudeDeg, 6)}° · ${formatNumber(observer.longitudeEastDeg, 6)}° E` : "Observer unavailable"}</span>
-  <span className="text-[9px] uppercase tracking-[0.12em] text-[#c9b98e]/80">View coordinates ⌄</span>
+  <span className="text-[9px] uppercase tracking-[0.12em] text-[#FC3D21]/80">View coordinates ⌄</span>
 </summary>
 <div className="border-t border-white/[0.06] p-4 sm:p-6">
 
@@ -2397,7 +2400,7 @@ function MissionDataDashboardContent() {
 <summary className="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 px-4 py-4 sm:px-5">
   <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/65">04 / Scientific data provenance</span>
   <span className="text-xs text-white/55">{data.sources?.ephemeris ?? "NASA/JPL Horizons"} · {data.sources?.localTerrain ?? "NASA LOLA Product 78"}</span>
-  <span className="text-[9px] uppercase tracking-[0.12em] text-[#c9b98e]/80">View sources ⌄</span>
+  <span className="text-[9px] uppercase tracking-[0.12em] text-[#FC3D21]/80">View sources ⌄</span>
 </summary>
 <div className="border-t border-white/[0.06] p-4 sm:p-6">
 
@@ -2421,7 +2424,7 @@ function MissionDataDashboardContent() {
                     apparent-position observations for the
                     requested mission epoch.
                   </p>
-                  <a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#d7c89f]/80 hover:text-white">Open JPL Horizons ↗</a>
+                  <a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#FC3D21]/80 hover:text-white">Open JPL Horizons ↗</a>
                 </Panel>
 
                 <Panel>
@@ -2437,7 +2440,7 @@ function MissionDataDashboardContent() {
                     positioning and sampled terrain-horizon
                     analysis.
                   </p>
-                  <a href="https://pgda.gsfc.nasa.gov/products/78" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#d7c89f]/80 hover:text-white">Open Product 78 archive ↗</a>
+                  <a href="https://pgda.gsfc.nasa.gov/products/78" target="_blank" rel="noreferrer" className="mt-4 inline-flex text-[10px] font-medium text-[#FC3D21]/80 hover:text-white">Open Product 78 archive ↗</a>
                 </Panel>
               </div>
             
@@ -2477,7 +2480,7 @@ function MissionDataDashboardContent() {
         <footer className="flex flex-col justify-between gap-4 border-t border-white/[0.08] pt-6 sm:flex-row sm:items-center">
           <div>
             <p className="text-[10px] font-semibold tracking-[0.18em] text-white/55">
-              LUNAPATH
+              LUNEX
             </p>
 
             <p className="mt-1 text-[9px] text-white/25">
@@ -2504,10 +2507,10 @@ export default function MissionDataPage() {
   return (
     <Suspense
       fallback={
-        <main className="flex min-h-screen items-center justify-center bg-[#08090a] text-white">
+        <main className="flex min-h-screen items-center justify-center bg-[#0B3D91] text-white">
           <div className="text-center">
             <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.035]">
-              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/15 border-t-[#d6c18e]" />
+              <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/15 border-t-[#FC3D21]" />
             </div>
 
             <p className="mt-5 text-sm text-white/55">

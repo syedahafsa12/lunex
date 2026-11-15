@@ -70,7 +70,7 @@ export default function TerrainCheckPage() {
 
   return (
     <main
-      className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto bg-neutral-950 text-neutral-100"
+      className="relative w-full min-h-screen overflow-x-hidden overflow-y-auto bg-[#0B3D91] text-white"
       style={{
         height: "auto",
         maxHeight: "none",
@@ -80,7 +80,7 @@ export default function TerrainCheckPage() {
       <div className="mx-auto w-full max-w-4xl space-y-8 px-5 py-12 sm:px-8 sm:py-16">
 
         <header className="space-y-3">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/45">
             NASA LOLA · Data validation
           </p>
 
@@ -88,17 +88,17 @@ export default function TerrainCheckPage() {
             Shackleton Rim Terrain Check
           </h1>
 
-          <p className="max-w-2xl text-sm leading-7 text-neutral-400">
+          <p className="max-w-2xl text-sm leading-7 text-white/55">
             Validating geographic coordinates against the NASA LOLA elevation
             raster.
           </p>
         </header>
 
         {loading && (
-          <div className="rounded-2xl border border-neutral-800 bg-neutral-900/50 p-6">
+          <div className="rounded-2xl border border-white/15 bg-[#082D68] p-6">
             <div className="flex items-center gap-3">
               <div className="h-2.5 w-2.5 animate-pulse rounded-full bg-blue-400" />
-              <p className="text-sm text-neutral-300">
+              <p className="text-sm text-white/80">
                 Loading NASA elevation data and calculating the Site04 position...
               </p>
             </div>
@@ -126,7 +126,7 @@ export default function TerrainCheckPage() {
 
         {result && (
           <>
-            <section className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <section className="rounded-2xl border border-white/15 bg-[#082D68] p-6">
               <SectionHeading
                 number="01"
                 title="Geographic observation point"
@@ -155,7 +155,7 @@ export default function TerrainCheckPage() {
               </div>
             </section>
 
-            <section className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <section className="rounded-2xl border border-white/15 bg-[#082D68] p-6">
               <SectionHeading
                 number="02"
                 title="Raster position"
@@ -190,7 +190,7 @@ export default function TerrainCheckPage() {
               </div>
             </section>
 
-            <section className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <section className="rounded-2xl border border-white/15 bg-[#082D68] p-6">
               <SectionHeading
                 number="03"
                 title="Elevation at Site04"
@@ -198,17 +198,17 @@ export default function TerrainCheckPage() {
 
               <p className="mt-6 text-4xl font-semibold tracking-tight tabular-nums sm:text-5xl">
                 {result.sample.elevationMeters.toFixed(3)}
-                <span className="ml-2 text-lg font-normal text-neutral-500">
+                <span className="ml-2 text-lg font-normal text-white/45">
                   metres
                 </span>
               </p>
 
-              <p className="mt-3 text-sm leading-6 text-neutral-500">
+              <p className="mt-3 text-sm leading-6 text-white/45">
                 Bilinear interpolation using the four surrounding DEM pixels.
               </p>
             </section>
 
-            <section className="rounded-2xl border border-neutral-800 bg-neutral-900/40 p-6">
+            <section className="rounded-2xl border border-white/15 bg-[#082D68] p-6">
               <SectionHeading
                 number="04"
                 title="Raster information"
@@ -246,7 +246,7 @@ export default function TerrainCheckPage() {
                 />
               </div>
 
-              <p className="mt-6 text-sm text-neutral-500">
+              <p className="mt-6 text-sm text-white/45">
                 Projection: {result.projection}
               </p>
             </section>
@@ -256,7 +256,7 @@ export default function TerrainCheckPage() {
                 Scientific validation still required
               </h2>
 
-              <p className="mt-3 text-sm leading-7 text-neutral-300">
+              <p className="mt-3 text-sm leading-7 text-white/80">
                 This test verifies the implemented coordinate transformation
                 and raster lookup. It does not independently establish that
                 the DEM and Horizons observer coordinates use perfectly
@@ -266,7 +266,7 @@ export default function TerrainCheckPage() {
           </>
         )}
 
-        <footer className="border-t border-neutral-800 py-8 text-xs text-neutral-600">
+        <footer className="border-t border-white/15 py-8 text-xs text-neutral-600">
           NASA LOLA · Site04 · Shackleton Rim
           <span className="float-right">Terrain validation</span>
         </footer>
@@ -299,11 +299,11 @@ function Metric({
 }) {
   return (
     <div className="min-w-0">
-      <p className="text-xs font-medium uppercase tracking-wider text-neutral-500">
+      <p className="text-xs font-medium uppercase tracking-wider text-white/45">
         {label}
       </p>
 
-      <p className="mt-2 break-words text-base font-medium tabular-nums text-neutral-100">
+      <p className="mt-2 break-words text-base font-medium tabular-nums text-white">
         {value}
       </p>
     </div>

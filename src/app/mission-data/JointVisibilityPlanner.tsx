@@ -403,14 +403,14 @@ export default function JointVisibilityPlanner({
 
   return (
     <section className="mb-10">
-      <div className="overflow-hidden rounded-2xl border border-[#c9b98e]/20 bg-[#0d0e10] shadow-[0_18px_55px_rgba(0,0,0,0.2)]">
+      <div className="overflow-hidden rounded-2xl border border-[#FC3D21]/20 bg-[#082D68] shadow-[0_18px_55px_rgba(0,0,0,0.2)]">
 
         {/* HEADER */}
 
         <div className="flex flex-col justify-between gap-4 border-b border-white/[0.07] p-5 sm:flex-row sm:items-center sm:p-6">
           <div>
-            <div className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#c9b98e]/75">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#c9b98e]" />
+            <div className="flex items-center gap-2 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#FC3D21]/75">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FC3D21]" />
               Joint celestial visibility
             </div>
 
@@ -437,7 +437,7 @@ export default function JointVisibilityPlanner({
 
           {loading && (
             <div className="flex items-center gap-4 rounded-xl border border-white/[0.07] bg-black/20 p-5">
-              <div className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-white/15 border-t-[#c9b98e]" />
+              <div className="h-5 w-5 shrink-0 animate-spin rounded-full border-2 border-white/15 border-t-[#FC3D21]" />
 
               <div>
                 <p className="text-sm font-medium text-white/80">
@@ -527,7 +527,7 @@ export default function JointVisibilityPlanner({
                       onClick={() =>
                         onUseTime(recommendation.timeUtc)
                       }
-                      className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#e8e5dc] px-5 text-xs font-semibold text-[#141414] transition hover:bg-white"
+                      className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-[#FC3D21] px-5 text-xs font-semibold text-[#FFFFFF] transition hover:bg-[#FC3D21]/90"
                     >
                       Use this time
                       <span aria-hidden="true">↗</span>

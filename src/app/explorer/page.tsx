@@ -32,7 +32,7 @@ interface RasterMetadata {
 
 function InvalidSelection() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#030406] px-6 text-center text-white">
+    <main className="flex min-h-screen items-center justify-center bg-[#0B3D91] px-6 text-center text-white">
       <div className="max-w-md">
         <p className="text-[10px] tracking-[0.3em] text-red-300/70">
           INVALID OBSERVATION LOCATION
@@ -102,7 +102,7 @@ async function getRasterDimensions(
       height <= 0
     ) {
       console.error(
-        `[LUNAPATH] Invalid raster dimensions for ${siteId}.`,
+        `[LUNEX] Invalid raster dimensions for ${siteId}.`,
         metadata
       );
 
@@ -112,7 +112,7 @@ async function getRasterDimensions(
     return { width, height };
   } catch (error) {
     console.error(
-      `[LUNAPATH] Could not read raster metadata for ${siteId}:`,
+      `[LUNEX] Could not read raster metadata for ${siteId}:`,
       error
     );
 

@@ -1269,7 +1269,7 @@ function EarthModel({
       (error) => {
         if (cancelled) return;
         console.warn(
-          "[LUNAPATH] Blue Marble Earth texture unavailable; using the bundled Earth model.",
+          "[LUNEX] Blue Marble Earth texture unavailable; using the bundled Earth model.",
           error
         );
         setTextureFailed(true);
@@ -1871,7 +1871,7 @@ export default function Lunar360Explorer({
           quality: "preview",
         });
 
-        console.info("[LUNAPATH] Fast LOLA preview ready:", {
+        console.info("[LUNEX] Fast LOLA preview ready:", {
           siteId,
           width: preview.width,
           height: preview.height,
@@ -1879,7 +1879,7 @@ export default function Lunar360Explorer({
         });
       } catch (previewError) {
         console.warn(
-          "[LUNAPATH] Preview unavailable; falling back to full Product78 terrain.",
+          "[LUNEX] Preview unavailable; falling back to full Product78 terrain.",
           previewError
         );
       }
@@ -1900,7 +1900,7 @@ export default function Lunar360Explorer({
           quality: "full",
         });
 
-        console.info("[LUNAPATH] Full-resolution LOLA terrain ready:", {
+        console.info("[LUNEX] Full-resolution LOLA terrain ready:", {
           siteId,
           width: loaded.width,
           height: loaded.height,
@@ -1911,12 +1911,12 @@ export default function Lunar360Explorer({
 
         if (previewLoaded) {
           console.warn(
-            "[LUNAPATH] Full-resolution refinement failed; keeping the valid preview.",
+            "[LUNEX] Full-resolution refinement failed; keeping the valid preview.",
             error
           );
         } else {
           console.error(
-            `[LUNAPATH] NASA terrain unavailable for ${siteId}:`,
+            `[LUNEX] NASA terrain unavailable for ${siteId}:`,
             error
           );
           setTerrainLoadFailure({
@@ -1979,7 +1979,7 @@ export default function Lunar360Explorer({
       undefined,
       (error) => {
         if (!active) return;
-        console.warn("[LUNAPATH] LROC NAC imagery unavailable; using LOLA-only shaded terrain.", error);
+        console.warn("[LUNEX] LROC NAC imagery unavailable; using LOLA-only shaded terrain.", error);
         setSurfaceImageryState({
           key: surfaceImageryRequestKey,
           texture: null,
@@ -2082,7 +2082,7 @@ export default function Lunar360Explorer({
         });
 
         console.info(
-          "[LUNAPATH] JPL selected-location result:",
+          "[LUNEX] JPL selected-location result:",
           {
             requestedSiteId: siteId,
             returnedSiteId: result.site?.id,
@@ -2103,7 +2103,7 @@ export default function Lunar360Explorer({
           requestError = error instanceof Error
             ? error.message
             : "Unknown JPL Horizons request failure.";
-          console.error("[LUNAPATH] JPL Horizons data unavailable:", error);
+          console.error("[LUNEX] JPL Horizons data unavailable:", error);
         }
       } finally {
         if (!cancelled) {
@@ -2294,7 +2294,7 @@ export default function Lunar360Explorer({
 
   return (
     <main
-      className="fixed inset-0 h-[100dvh] w-full overflow-hidden bg-black touch-none select-none"
+      className="fixed inset-0 h-[100dvh] w-full overflow-hidden bg-[#0B3D91] touch-none select-none"
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -2347,7 +2347,7 @@ export default function Lunar360Explorer({
 
       {!terrain && (
         <div
-          className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center bg-[#050607]"
+          className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center bg-[#082D68]"
           role="status"
           aria-label={currentTerrainLoadFailure ? "Lunar surface unavailable" : "Loading lunar surface"}
         >
@@ -2363,7 +2363,7 @@ export default function Lunar360Explorer({
             </button>
           ) : (
             <div className="flex flex-col items-center gap-3">
-              <span className="h-8 w-8 animate-spin rounded-full border border-white/15 border-t-amber-100/80" />
+              <span className="h-8 w-8 animate-spin rounded-full border border-white/15 border-t-[#FC3D21]" />
               <span className="text-[9px] tracking-[0.22em] text-white/45">
                 LOADING LUNAR SURFACE
               </span>
@@ -2379,7 +2379,7 @@ export default function Lunar360Explorer({
       <section
         aria-label="Sun and Earth visibility"
         aria-live="polite"
-        className="pointer-events-none absolute left-5 top-5 z-40 w-[min(280px,calc(100vw-7rem))] rounded-xl border border-white/15 bg-black/65 p-3 text-white shadow-lg backdrop-blur-md"
+        className="pointer-events-none absolute left-5 top-5 z-40 w-[min(280px,calc(100vw-7rem))] rounded-xl border border-white/15 bg-[#0B3D91]/85 p-3 text-white shadow-lg backdrop-blur-md"
       >
         <p className="text-[9px] font-semibold tracking-[0.18em] text-white/45">
           CELESTIAL TARGET STATUS
@@ -2436,14 +2436,14 @@ export default function Lunar360Explorer({
       {/* Minimal true-north compass: the scene remains the focus. */}
       <div
         aria-label={`Camera direction ${cameraHeading.toFixed(0)} degrees from true north`}
-        className="pointer-events-none absolute right-5 top-5 z-40 grid h-24 w-24 grid-cols-3 grid-rows-3 place-items-center rounded-full border border-white/20 bg-black/45 p-2 text-[10px] font-medium text-white/65 shadow-lg backdrop-blur-md"
+        className="pointer-events-none absolute right-5 top-5 z-40 grid h-24 w-24 grid-cols-3 grid-rows-3 place-items-center rounded-full border border-white/20 bg-[#0B3D91]/75 p-2 text-[10px] font-medium text-white/65 shadow-lg backdrop-blur-md"
       >
         <span />
         <span className="text-white">N</span>
         <span />
         <span>W</span>
         <span
-          className="text-lg text-amber-100"
+          className="text-lg text-[#FC3D21]"
           style={{ transform: `rotate(${cameraHeading}deg)` }}
           aria-hidden="true"
         >
@@ -2459,7 +2459,7 @@ export default function Lunar360Explorer({
           mission/ephemeris diagnostics are archived for the Mission Data page. */}
       {timelineLength > 0 && selectedTimeUtc && (
         <div
-          className="pointer-events-auto absolute bottom-5 left-1/2 z-40 w-[min(440px,calc(100vw-7rem))] -translate-x-1/2 rounded-full border border-white/10 bg-black/55 px-4 py-2 text-white shadow-lg backdrop-blur-md"
+          className="pointer-events-auto absolute bottom-5 left-1/2 z-40 w-[min(440px,calc(100vw-7rem))] -translate-x-1/2 rounded-full border border-white/10 bg-[#0B3D91]/80 px-4 py-2 text-white shadow-lg backdrop-blur-md"
           onPointerDown={(event) => event.stopPropagation()}
           onPointerUp={(event) => event.stopPropagation()}
         >
@@ -2472,7 +2472,7 @@ export default function Lunar360Explorer({
           <input
             aria-label="Mission timeline"
             title="Mission timeline"
-            className="block w-full accent-amber-300"
+            className="block w-full accent-[#FC3D21]"
             type="range"
             min="0"
             max={timelineLength - 1}
@@ -2490,7 +2490,7 @@ export default function Lunar360Explorer({
         <button
           type="button"
           onClick={() => setJplRetryCount((count) => count + 1)}
-          className="pointer-events-auto absolute right-5 top-28 z-40 rounded-md border border-red-200/30 bg-black/70 px-3 py-2 text-[10px] text-red-100/85 backdrop-blur-md"
+          className="pointer-events-auto absolute right-5 top-28 z-40 rounded-md border border-red-200/30 bg-[#0B3D91]/90 px-3 py-2 text-[10px] text-red-100/85 backdrop-blur-md"
           aria-label="Retry JPL mission data request"
           title="Retry JPL data"
         >
@@ -2508,7 +2508,7 @@ export default function Lunar360Explorer({
         ) => event.stopPropagation()}
         aria-label="Back to planner"
         title="Back to planner"
-        className="absolute bottom-5 left-5 z-50 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/55 text-lg text-white/85 shadow-lg backdrop-blur-md transition-colors hover:border-white/60 hover:bg-black/85 hover:text-white"
+        className="absolute bottom-5 left-5 z-50 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-[#0B3D91]/80 text-lg text-white/85 shadow-lg backdrop-blur-md transition-colors hover:border-white/60 hover:bg-[#0B3D91] hover:text-white"
       >
         <span aria-hidden="true">←</span>
       </a>

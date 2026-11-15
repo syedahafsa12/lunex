@@ -440,7 +440,7 @@ export default function LunarMap({
     if (!context) return;
 
     context.setTransform(dpr, 0, 0, dpr, 0, 0);
-    context.fillStyle = "#101214";
+    context.fillStyle = "#082D68";
     context.fillRect(0, 0, viewport.width, viewport.height);
 
     context.imageSmoothingEnabled = true;
@@ -474,13 +474,13 @@ export default function LunarMap({
 
       context.beginPath();
       context.arc(markerX, markerY, compact ? 5 : 7, 0, Math.PI * 2);
-      context.strokeStyle = "#E7C77D";
+      context.strokeStyle = "#FC3D21";
       context.lineWidth = 1.7;
       context.stroke();
 
       context.beginPath();
       context.arc(markerX, markerY, 2, 0, Math.PI * 2);
-      context.fillStyle = "#F4D99B";
+      context.fillStyle = "#FC3D21";
       context.fill();
 
       context.beginPath();
@@ -493,7 +493,7 @@ export default function LunarMap({
       context.moveTo(markerX, markerY + 5);
       context.lineTo(markerX, markerY + 15);
 
-      context.strokeStyle = "#E7C77D";
+      context.strokeStyle = "#FC3D21";
       context.lineWidth = 1;
       context.stroke();
     }
@@ -692,7 +692,7 @@ export default function LunarMap({
       </div>
 
       <div
-        className={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#101214] ${compact ? "h-[260px]" : "h-[min(65vh,620px)] min-h-[380px]"
+        className={`relative w-full overflow-hidden rounded-xl border border-white/10 bg-[#082D68] ${compact ? "h-[260px]" : "h-[min(65vh,620px)] min-h-[380px]"
           }`}
       >
         <canvas
@@ -712,7 +712,7 @@ export default function LunarMap({
         />
 
         {loading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#101214]">
+          <div className="absolute inset-0 flex items-center justify-center bg-[#082D68]">
             <div className="text-center">
               <div className="mx-auto mb-3 h-6 w-6 animate-spin rounded-full border-2 border-white/15 border-t-white" />
               <p className="text-xs text-white/65">
@@ -726,7 +726,7 @@ export default function LunarMap({
         )}
 
         {error && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#101214] p-5">
+          <div className="absolute inset-0 flex items-center justify-center bg-[#082D68] p-5">
             <div className="max-w-md text-center">
               <p className="text-sm font-semibold text-red-300">
                 Map loading failed
@@ -757,8 +757,8 @@ export default function LunarMap({
         </div>
 
         {selected && (
-          <div className="pointer-events-none absolute right-3 top-3 rounded-lg border border-[#e7c77d]/30 bg-black/75 px-3 py-2 backdrop-blur-md">
-            <p className="text-[9px] tracking-[0.16em] text-[#e7c77d]">
+          <div className="pointer-events-none absolute right-3 top-3 rounded-lg border border-[#FC3D21]/30 bg-black/75 px-3 py-2 backdrop-blur-md">
+            <p className="text-[9px] tracking-[0.16em] text-[#FC3D21]">
               OBSERVER POSITION
             </p>
             <p className="mt-1 text-[10px] text-white/80">
@@ -774,8 +774,8 @@ export default function LunarMap({
       </div>
 
       {selected ? (
-        <div className="rounded-lg border border-[#e7c77d]/20 bg-[#e7c77d]/[0.035] p-3">
-          <p className="text-[9px] tracking-[0.16em] text-[#e7c77d]/75">
+        <div className="rounded-lg border border-[#FC3D21]/20 bg-[#FC3D21]/[0.035] p-3">
+          <p className="text-[9px] tracking-[0.16em] text-[#FC3D21]/75">
             {interactiveSelection
               ? "SELECTED COORDINATES"
               : "API OBSERVER COORDINATES"}
