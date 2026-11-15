@@ -1231,10 +1231,12 @@ function CelestialModel({
 function ProceduralSun({
   position,
   diameter,
+  opacity = 1,
   rotationSpeed = 0.0015,
 }: {
   position: THREE.Vector3;
   diameter: number;
+  opacity?: number;
   rotationSpeed?: number;
 }) {
   const groupRef = useRef<THREE.Group>(null);
@@ -1252,9 +1254,11 @@ function ProceduralSun({
   const surfaceMaterial = useMemo(
     () => new THREE.MeshBasicMaterial({
       color: "#fff2d5",
+      transparent: opacity < 1,
+      opacity,
       toneMapped: false,
     }),
-    []
+    [opacity]
   );
 
   const glowMaterial = useMemo(
@@ -1627,6 +1631,7 @@ function CelestialBodies({
           <ProceduralSun
             position={sunPosition}
             diameter={sunDiameter}
+            opacity={sunOpacity}
             rotationSpeed={0.0015}
           />
         )}
