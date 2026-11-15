@@ -2,7 +2,7 @@
 import { usePathname } from "next/navigation";
 import styles from "./lunex.module.css";
 
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import type { CSSProperties } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
@@ -845,7 +845,7 @@ function RevealObserver({ routeKey }: { routeKey: string }) {
   return null;
 }
 
-export default function PortableLunexPage() {
+function PortableLunexPageContent() {
   const pathname = usePathname() || "/";
   const isWebsiteRoute = pathname === "/website" || pathname.startsWith("/website/");
   const basePath = isWebsiteRoute ? "/website" : "";
@@ -903,5 +903,32 @@ export default function PortableLunexPage() {
       )}
       <SiteFooter basePath={basePath} iconUrl={iconUrl} />
     </div>
+  );
+}
+
+export default function PortableLunexPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className={styles.root} data-lunex-root>
+          <main
+            style={{
+              minHeight: "100vh",
+              display: "grid",
+              placeItems: "center",
+              padding: "32px",
+              color: "white",
+              fontSize: "12px",
+              fontWeight: 700,
+              letterSpacing: "0.12em",
+            }}
+          >
+            LOADING LUNEX...
+          </main>
+        </div>
+      }
+    >
+      <PortableLunexPageContent />
+    </Suspense>
   );
 }
