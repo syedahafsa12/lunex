@@ -285,6 +285,7 @@ function formatUtcDateTime(
 function assessTarget(
   visibility: TargetTerrainVisibility | undefined,
   completeHorizonVerified: boolean,
+  targetName: "Sun" | "Earth",
 ): TargetAssessment {
   if (!visibility) {
     return {
@@ -332,9 +333,9 @@ function assessTarget(
   if (hasPositiveSampledResult) {
     return {
       state: "provisional",
-      label: "Potential visibility — unverified",
+      label: "Above sampled horizon",
       description:
-        "The target clears the available terrain samples, but missing terrain means actual visibility cannot be confirmed.",
+        `${targetName} is positioned above the available sampled terrain horizon at this time. Actual visibility remains unverified because terrain coverage is incomplete.`,
     };
   }
 
@@ -920,11 +921,13 @@ function SunEarthVisibility({
   const sunAssessment = assessTarget(
     sunVisibility,
     completeHorizonVerified,
+    "Sun",
   );
 
   const earthAssessment = assessTarget(
     earthVisibility,
     completeHorizonVerified,
+    "Earth",
   );
 
   const sunConfirmed =
@@ -953,6 +956,9 @@ function SunEarthVisibility({
 
   const atLeastOneCanExplore =
     sunCanExplore || earthCanExplore;
+
+  const bothPotentiallyVisible =
+    sunCanExplore && earthCanExplore && !bothConfirmed;
 
   /* =======================================================
      TARGET-SPECIFIC EXPLORER URLS
@@ -1050,6 +1056,14 @@ function SunEarthVisibility({
       };
     }
 
+    if (bothPotentiallyVisible) {
+      return {
+        title: "Both potentially visible",
+        description:
+          "The Sun and Earth are positioned above the available sampled terrain horizon at this mission time. Their visibility remains provisional because terrain coverage is incomplete.",
+      };
+    }
+
     if (sunConfirmed) {
       return {
         title: "Sun visibility confirmed",
@@ -1122,12 +1136,12 @@ function SunEarthVisibility({
             Mission visibility analysis
           </p>
 
-          <h3 className="mt-1 text-sm font-medium text-white">
-            Sun + Earth visibility
+          <h3 className="mt-1 text-sm font-semibold text-white">
+            Mission Visibility Analysis Overview
           </h3>
 
-          <p className="mt-1 text-[10px] text-white/40">
-            Select a landing position to begin the analysis.
+          <p className="mt-1 text-[10px] text-white/45">
+            Sun + Earth visibility · Live geometric assessment for the selected lunar position.
           </p>
         </div>
 
@@ -1147,6 +1161,10 @@ function SunEarthVisibility({
         ) : bothConfirmed ? (
           <span className="rounded-full border border-emerald-300/25 bg-emerald-300/[0.07] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider text-emerald-200">
             Both confirmed
+          </span>
+        ) : bothPotentiallyVisible ? (
+          <span className="rounded-full border border-amber-200/25 bg-amber-200/[0.07] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider text-amber-200">
+            Both potentially visible
           </span>
         ) : sunConfirmed ? (
           <span className="rounded-full border border-amber-200/25 bg-amber-200/[0.07] px-3 py-1.5 text-[9px] font-semibold uppercase tracking-wider text-amber-200">
@@ -1263,7 +1281,7 @@ function SunEarthVisibility({
               activeInstantResult?.jointVisibility && (
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <TargetCard
-                    icon="☀"
+                    icon="☀️"
                     name="Sun"
                     assessment={sunAssessment}
                     href={sunExplorerHref}
