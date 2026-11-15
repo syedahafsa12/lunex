@@ -75,31 +75,54 @@ The OFL allows fonts to be used and bundled with software subject to the licence
 
 ## 4. NASA and mission imagery / models
 
-The complete source list and purpose are in [DATA_SOURCES.md](DATA_SOURCES.md). Key attributions:
-- NASA PGDA LOLA Product 78 — NASA Goddard Space Flight Center / PGDA.
-- NASA Moon Trek LRO WAC South Pole mosaic — “Imagery: NASA / JPL / LRO Wide Angle Camera.”
-- LROC NAC controlled South Pole average mosaic through Lunaserv — credit “NASA/GSFC/Arizona State University (ASU), Lunar Reconnaissance Orbiter Camera (LROC).” The LROC terms page permits educational use with proper citation but says curated/non-PDS imagery is copyrighted. Do not relicense this content under Apache 2.0.
-- NASA SVS Moon model item 14959 — credit NASA's Goddard Space Flight Center; the SVS page lists producer/data/analysis/technical credits.
-- Earth Blue Marble texture served from the three-globe example directory — cite NASA as the image source and observe NASA's media usage guidelines; the image is separate from the three-globe package's software licence.
+The full data source, role and attribution record is in [DATA_SOURCES.md](DATA_SOURCES.md). Confirmed/cited sources include:
 
-## 5. PROVENANCE / LICENCE REVIEW REQUIRED
+- **NASA PGDA LOLA Product 78:** NASA Goddard Space Flight Center / Planetary Geology, Geophysics and Geochemistry Laboratory.
+- **NASA Moon Trek LRO WAC South Pole mosaic:** retain the in-app attribution “Imagery: NASA / JPL / LRO Wide Angle Camera.”
+- **LROC NAC controlled South Pole average mosaic via Lunaserv WMS:** required credit is “NASA/GSFC/Arizona State University (ASU), Lunar Reconnaissance Orbiter Camera (LROC).” The LROC Terms page distinguishes public-domain PDS products from copyrighted curated/non-PDS imagery; its educational-use permission requires proper citation. This WMS use is not an Apache- or MIT-licensed asset.
+- **NASA SVS global Moon model, item 14959:** source and direct download URL are documented in [DATA_SOURCES.md](DATA_SOURCES.md). NASA SVS credits NASA Goddard Space Flight Center, producer Dan Gallagher (eMITS), data provider Ernie Wright (USRA), data analysts Tuomas Kankola and Josh Klint, and technical support Aaron E. Lepsch. NASA SVS says content is public domain unless otherwise noted.
+- **NASA Blue Marble Earth texture loaded from the three-globe example directory:** cite NASA and follow NASA media usage guidelines. The image is not covered automatically by the three-globe software licence.
+- **Solar System Scope Earth Day Map:** the source page publishes the texture pack under CC BY 4.0, but the previously bundled file was removed because its binary origin was not confirmed and the image was not referenced by application source. Do not claim that historical binary is an exact Solar System Scope download.
 
-These items are present or referenced in the repository but their exact source or licence is not established by the current repository evidence. Do not describe them as Apache-licensed, MIT-licensed, public domain or NASA material until the source and licence are verified.
+### NASA / LROC WMS terms qualification
 
-| File or reference | Current evidence | Required action before final public release |
+The LROC SOC terms page states that PDS-delivered LROC data products are public domain, but curated/non-PDS imagery served through LROC website interfaces remains copyrighted; educational use is permitted with proper credit. NASA Space Apps' 2026 terms require third-party Solution Materials to be freely and publicly available without restriction or, at minimum, under an OSI-defined open-source licence. The current Lunaserv WMS layer is a NASA/ASU mission data service with educational-use terms, not an OSI licence. Because this is a NASA partner source but the precise terms still limit use, retain the attribution and obtain confirmation from the LROC SOC / Space Apps organisers that this particular WMS layer is acceptable for public submission. The lowest-risk alternative is to replace the curated WMS image with the equivalent LROC PDS-archived product and cite its PDS product identifier.
+
+## 5. Provenance / licence status of 3D model paths
+
+| Path referenced by code | Repository evidence | Source / licence status |
 |---|---|---|
-| `public/textures/earth_daymap.jpg` | File is tracked; no reliable source/creator/licence is recorded in the repository. | Identify original source and terms, or remove if unused. |
-| `public/textures/nasa-lunar-crater.webp` | Filename suggests NASA but is not evidence of origin or licence. | Identify original NASA asset/page and check for third-party credits, or remove if unused. |
-| `public/textures/quickmap-lroc.png` | File is tracked; filename suggests a QuickMap/LROC origin but the exact image/product and terms are not recorded. | Identify source, layer/product and licence/educational-use terms, or remove if unused. |
-| `nasa-south-pole-test.png` | File is tracked; no original source or licence is recorded. | Identify creator and source, or remove if unused. |
-| `/models/earth.glb` | Referenced by explorer code; the file was not present in the inspected GitHub `main` tree. | Locate the actual deployment asset, record its creator/source/licence, or remove the reference. |
-| `/models/sun.glb` | Referenced by explorer code; the file was not present in the inspected GitHub `main` tree. | Locate the actual deployment asset, record its creator/source/licence, or remove the reference. |
-| `/models/moon-optimized.glb` | Referenced in `MoonViewer.tsx`; the file was not present in the inspected GitHub `main` tree. | Locate the actual deployment asset, record its creator/source/licence, or remove the reference. |
-| `/models/Moon_NASA_LRO_8k_Topo_Small.glb` | Code references NASA SVS item 14959, but the actual GLB was not present in the inspected GitHub `main` tree. A public environment variable may override its URL. | Confirm the exact deployed URL and that it serves the NASA SVS 14959 file; add the file or deployment URL to the project asset register. |
+| `/models/Moon_NASA_LRO_8k_Topo_Small.glb` | Homepage references this exact filename as its default local model path. The original project setup instructions identify NASA SVS item 14959 and the exact NASA download URL. The binary is not tracked because `.gitignore` excludes `*.glb`. | **Source identified:** NASA SVS item 14959. NASA SVS says content is public domain unless otherwise noted. Retain NASA SVS credits and confirm the deployed `NEXT_PUBLIC_LUNEX_MOON_MODEL_URL` (if set) points to this exact asset. See [DATA_SOURCES.md](DATA_SOURCES.md). |
+| `/models/earth.glb` | Referenced in `Lunar360Explorer.tsx`; binary absent from the GitHub `main` tree. | **Unverified:** no file, checksum, creator, source URL or specific licence available. NASA publishes possible replacement models (Earth with Clouds, NASA VTAD; and an Earth 3D printable model), but there is no evidence that either is the current `earth.glb`. Do not attribute the current file to NASA without matching the exact downloaded file. |
+| `/models/sun.glb` | Referenced in `Lunar360Explorer.tsx`; binary absent from the GitHub `main` tree. | **Unverified:** no file, checksum, creator, source URL or specific licence available. NASA publishes a Sun 3D Model Interactive with a glTF download, but there is no evidence that it is the current `sun.glb`. Do not attribute the current file to NASA without matching the exact downloaded file. |
+| `/models/moon-optimized.glb` | Referenced only by the legacy `MoonViewer.tsx` component found in the source audit; binary absent from `main`. The active homepage uses a differently named NASA SVS model path. | **Unverified legacy reference:** no source, creator, binary or licence recorded. Do not include or serve this binary. Remove the legacy component/reference if it is not part of the submitted application, or document the exact source and licence before use. |
 
-The four local image files above did not have source references in the principal application files inspected while preparing this notice. That is not proof that they are unused; search the full application and deployment configuration before deleting them.
+The repository-wide `.gitignore` rule `*.glb` excludes all GLB files from Git. Therefore, a file present only on a developer's machine is not part of the public GitHub `main` snapshot. If the Render deployment serves an external model URL, record the full URL, asset name, creator, source page and licence here. NASA's official replacement candidates are:
+- [NASA Sun 3D Model Interactive](https://science.nasa.gov/learn/heat/resource/sun-3d-model/)
+- [NASA Earth with Clouds 3D Model (NASA VTAD)](https://science.nasa.gov/resource/earth-with-clouds-3d-model/)
+- [NASA SVS Moon model, item 14959](https://svs.gsfc.nasa.gov/14959/)
 
-The `public/file.svg`, `public/globe.svg`, `public/next.svg`, `public/vercel.svg` and `public/window.svg` files also look like framework/starter assets. Verify whether any are used and either retain their correct upstream attribution/licence or remove unused boilerplate.
+These are source candidates, not proof of the identity of any untracked GLB.
+
+## 6. Unused local image files removed from the current submission tree
+
+The following image files were not referenced by the application source inspected for this audit and were removed from the current `main` branch because file-level provenance was missing:
+- `public/textures/earth_daymap.jpg`
+- `public/textures/nasa-lunar-crater.webp`
+- `public/textures/quickmap-lroc.png`
+- `nasa-south-pole-test.png`
+
+The local file `nasa-lunar-crater.webp` had JPEG file-signature bytes despite its `.webp` extension. No source/creator/licence was embedded in the tracked file metadata inspected. The QuickMap-named image could not be tied to an exact LROC PDS product from its pixels or repository history. The Earth Day Map name resembles Solar System Scope's CC BY 4.0 download name, but the original local binary was not proven to be the same asset. If you reintroduce any of these files, first obtain the original download or PDS product and record exact file-specific attribution and terms.
+
+**Git history caveat:** file deletion from `main` removes assets from the current submission snapshot, but the deleted blobs remain available from prior Git commits. Complete removal from the public repository history requires a separate history rewrite and force-push; do not do that without coordinating the team because it changes commit IDs and may disrupt collaborators.
+
+## 7. NASA Space Apps compliance note
+
+NASA's [2026 Participant Terms](https://www.spaceappschallenge.org/legal/) state that original team-created content must be freely available without restriction or licensed under an OSI-approved open-source licence. For non-NASA third-party Solution Materials, NASA requires that the materials be freely and publicly available without restriction or, at minimum, licensed as OSI-defined open source. The terms also require citations for every source and applicable third-party licences in the submitted documentation. NASA may reject Solutions lacking appropriate licence documentation.
+
+The Apache 2.0 licence in this repository applies only to original LUNEX work that the team is authorized to license. It does not override NASA data usage terms, third-party image/model rights, fonts or npm dependency licences.
+
+**Current audit status:** the three named unused texture images and the root test image are removed from the current `main` tree. The NASA Moon model source is identified. The exact `earth.glb` and `sun.glb` binaries remain unverified and are not present in the GitHub tree. The LROC curated WMS image remains an educational-use source whose compatibility with NASA's strict third-party-material wording should be confirmed or replaced with a PDS-archived product. See [DATA_SOURCES.md](DATA_SOURCES.md) for the full source register.
 
 ## 6. NASA Space Apps compliance note
 
