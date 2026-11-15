@@ -1226,6 +1226,85 @@ function CelestialModel({
 }
 
 /* =====================================================
+   PROCEDURAL SUN — NO EXTERNAL MODEL REQUIRED
+===================================================== */
+function ProceduralSun({
+  position,
+  diameter,
+  rotationSpeed = 0.0015,
+}: {
+  position: THREE.Vector3;
+  diameter: number;
+  rotationSpeed?: number;
+}) {
+  const groupRef = useRef<THREE.Group>(null);
+
+  const geometry = useMemo(
+    () => new THREE.SphereGeometry(diameter * 0.5, 64, 48),
+    [diameter]
+  );
+
+  const glowGeometry = useMemo(
+    () => new THREE.SphereGeometry(diameter * 0.68, 48, 32),
+    [diameter]
+  );
+
+  const surfaceMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial({
+      color: "#fff2d5",
+      toneMapped: false,
+    }),
+    []
+  );
+
+  const glowMaterial = useMemo(
+    () => new THREE.MeshBasicMaterial({
+      color: "#ffad55",
+      transparent: true,
+      opacity: 0.18,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      side: THREE.BackSide,
+      toneMapped: false,
+    }),
+    []
+  );
+
+  useEffect(() => {
+    return () => {
+      geometry.dispose();
+      glowGeometry.dispose();
+      surfaceMaterial.dispose();
+      glowMaterial.dispose();
+    };
+  }, [geometry, glowGeometry, surfaceMaterial, glowMaterial]);
+
+  useFrame((_, delta) => {
+    if (groupRef.current && rotationSpeed !== 0) {
+      groupRef.current.rotation.y += rotationSpeed * Math.min(delta, 0.05);
+    }
+  });
+
+  return (
+    <group
+      ref={groupRef}
+      position={[position.x, position.y, position.z]}
+    >
+      <mesh
+        geometry={glowGeometry}
+        material={glowMaterial}
+        renderOrder={1}
+      />
+      <mesh
+        geometry={geometry}
+        material={surfaceMaterial}
+        renderOrder={2}
+      />
+    </group>
+  );
+}
+
+/* =====================================================
    EARTH — BLUE MARBLE SURFACE + THIN ATMOSPHERE
 ===================================================== */
 
@@ -1545,14 +1624,10 @@ function CelestialBodies({
       {sunVisible &&
         sunPosition &&
         sunDiameter !== null && (
-          <CelestialModel
-            url="/models/sun.glb"
+          <ProceduralSun
             position={sunPosition}
             diameter={sunDiameter}
-            emissive
             rotationSpeed={0.0015}
-            opacity={sunOpacity}
-
           />
         )}
 
@@ -2520,5 +2595,4 @@ export default function Lunar360Explorer({
    PRELOAD MODELS
 ===================================================== */
 
-useGLTF.preload("/models/sun.glb");
 useGLTF.preload("/models/earth.glb");
