@@ -620,7 +620,7 @@ function SiteFooter({ basePath, iconUrl }: { basePath: string; iconUrl: string }
                 <nav className="lunex-footer-links" aria-label="Footer navigation">
                     <a href={basePath + "/presentation"}>Watch 30 Seconds</a>
                     <a href={basePath + "/map"}>Mission Explorer</a>
-                    <a href="https://github.com/ProMBZ/Lunex" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                    <a href="https://github.com/syedahafsa12/lunex" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
                 </nav>
                 <span className="lunex-footer-copyright">© 2026 LUNEX</span>
             </div>
