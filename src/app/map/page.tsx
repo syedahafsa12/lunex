@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 import LunarMap from "@/components/canvas/LunarMap";
 import MoonTrekMap, {
@@ -1563,14 +1564,17 @@ export default function MapPage() {
 
       <header className="sticky top-0 z-30 border-b border-white/[0.08] bg-[#08090b]/95 backdrop-blur-xl">
         <div className="mx-auto flex h-[72px] max-w-[1600px] items-center justify-between px-5 sm:px-8">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="h-7 w-7 rounded-full border border-[#c8c5ba]/60 bg-gradient-to-br from-[#d8d6cd] to-[#454641]" />
-
+          <Link href="/" className="flex items-center gap-3" aria-label="Lunex home">
+            <Image
+              src="/favicon.png"
+              alt="Lunex"
+              width={32}
+              height={32}
+              priority
+              className="h-8 w-8 object-contain"
+            />
             <span className="text-sm font-semibold tracking-[0.18em]">
-              LUNA
-              <span className="font-light text-white/45">
-                PATH
-              </span>
+              LUNEX
             </span>
           </Link>
 
