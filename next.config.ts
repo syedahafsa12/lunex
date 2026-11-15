@@ -1,6 +1,23 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Serve NASA's official 8k LRO/LOLA Moon model through this origin.
+  // This keeps the GLTF request same-origin and avoids browser CORS failures.
+  async rewrites() {
+    const nasaMoonModel = "https://svs.gsfc.nasa.gov/vis/a010000/a014900/a014959/Moon_NASA_LRO_8k_Topo_Small.glb";
+    return {
+      beforeFiles: [
+        {
+          source: "/models/Moon_NASA_LRO_8k_Topo_Small.glb",
+          destination: nasaMoonModel,
+        },
+        {
+          source: "/website/models/Moon_NASA_LRO_8k_Topo_Small.glb",
+          destination: nasaMoonModel,
+        },
+      ],
+    };
+  },
   /* config options here */
   cacheComponents: true,
   partialPrefetching: true,
