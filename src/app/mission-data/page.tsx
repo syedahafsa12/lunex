@@ -1122,14 +1122,14 @@ function TargetPanel({
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-3">
           <span
-            className={\`h-2.5 w-2.5 rounded-full \${
+            className={`h-2.5 w-2.5 rounded-full ${
               isSun ? "bg-amber-300" : "bg-white/75"
-            }\`}
+            }`}
           />
           <h3
-            className={\`text-sm font-semibold tracking-[0.16em] \${
+            className={`text-sm font-semibold tracking-[0.16em] ${
               isSun ? "text-amber-200" : "text-white/85"
-            }\`}
+            }`}
           >
             {name}
           </h3>
@@ -1180,9 +1180,9 @@ function TargetPanel({
                 Terrain visibility
               </p>
               <span
-                className={\`inline-flex rounded-lg border px-3 py-2 text-xs leading-5 \${
+                className={`inline-flex rounded-lg border px-3 py-2 text-xs leading-5 ${
                   getVisibilityStyle(visibility?.status)
-                }\`}
+                }`}
               >
                 {getVisibilityLabel(visibility?.status)}
               </span>
