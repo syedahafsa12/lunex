@@ -53,7 +53,7 @@ The prepared terrain grids use 5 m pixel spacing. NASA notes that approximately 
 | [LROC South Pole NAC mosaic](https://data.lroc.im-ldi.com/lroc/view_rdr/NAC_POLE_SOUTH_CM_AVG) | Optional high-resolution image context through Lunaserv WMS. |
 | [NASA LOLA Product 90](https://pgda.gsfc.nasa.gov/products/90) | Optional supplementary regional terrain data; not the primary prepared-site terrain source. |
 
-More detailed source descriptions, citations, and scientific context are available in [DATA_SOURCES.md](DATA_SOURCES.md). Third-party software, imagery, model, font, and license notices are recorded in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+More detailed source descriptions, citations, and scientific context are available in [DATA_SOURCES.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/DATA_SOURCES.md). Third-party software, imagery, model, font, and license notices are recorded in [THIRD_PARTY_NOTICES.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/THIRD_PARTY_NOTICES.md).
 
 ## Application routes
 
@@ -188,11 +188,11 @@ Lunex is a planning and visualization prototype. Its results should be interpret
 
 ## Project documentation
 
-- [DATA_SOURCES.md](DATA_SOURCES.md) — datasets, services, attribution, and how they are used.
-- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — third-party dependencies, software licenses, image and model credits.
-- [AI_USAGE.md](AI_USAGE.md) — AI/SI tools disclosure.
+- [DATA_SOURCES.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/DATA_SOURCES.md) — datasets, services, attribution, and how they are used.
+- [THIRD_PARTY_NOTICES.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/THIRD_PARTY_NOTICES.md) — third-party dependencies, software licenses, image and model credits.
+- [AI_USAGE.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/AI_USAGE.md) — AI/SI tools disclosure.
 - [LICENSE](LICENSE) — Apache License 2.0 for original Lunex project material covered by that license.
 
 ## License
 
-Lunex's original project code is released under the Apache License 2.0. This license does not replace the separate licenses, terms, or attribution requirements for NASA and partner-agency data, third-party imagery and 3D models, fonts, or software dependencies. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the corresponding notices.
+Lunex's original project code is released under the Apache License 2.0. This license does not replace the separate licenses, terms, or attribution requirements for NASA and partner-agency data, third-party imagery and 3D models, fonts, or software dependencies. See [THIRD_PARTY_NOTICES.md](https://github.com/syedahafsa12/bubbbbleee/blob/main/LUNEX_NASA_SPACE_APPS_SUBMISSION_2026/THIRD_PARTY_NOTICES.md) for the corresponding notices.
