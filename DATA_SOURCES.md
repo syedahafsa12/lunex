@@ -68,42 +68,71 @@ NASA Moon Trek identifies map data providers including NASA, JPL, Dawn, USGS and
 
 For Lunaserv-delivered imagery used in research, the LROC SOC requests citation of the Lunaserv WMS paper by Estes et al. (2013), the LROC EDR citation by Robinson (2010), and the LROC instrument overview by Robinson et al. (2010); see the LROC terms page for full reference details.
 
-## 5. NASA Goddard Scientific Visualization Studio — lunar 3D model
+## 5. NASA Goddard Scientific Visualization Studio — global lunar 3D model
 
-**Source:** [Moon 3D Models for Web, AR, and Animation — NASA SVS item 14959](https://svs.gsfc.nasa.gov/14959)  
-**Model filename referenced by the homepage:** `Moon_NASA_LRO_8k_Topo_Small.glb`
+**Exact model:** `Moon_NASA_LRO_8k_Topo_Small.glb` (77.7 MB)  
+**NASA source:** [Moon 3D Models for Web, AR, and Animation — NASA SVS item 14959](https://svs.gsfc.nasa.gov/14959/)  
+**Direct NASA asset URL used by the original project setup script:**  
+`https://svs.gsfc.nasa.gov/vis/a010000/a014900/a014959/Moon_NASA_LRO_8k_Topo_Small.glb`
 
-**How it contributes:** The homepage source references this NASA LRO/LOLA topographic Moon model for the global 3D orientation preview. The SVS item credits NASA's Goddard Space Flight Center; producer Dan Gallagher (eMITS); data provider Ernie Wright (USRA); data analysts Tuomas Kankola and Josh Klint; and technical support Aaron E. Lepsch.
+The original Lunex model setup instructions and download script identify this exact NASA SVS filename and download endpoint. NASA describes it as an LRO-derived global colour-and-height-map Moon model for web interactives, AR and animation. It is for global orientation/context only; it is not the local 5 m/pixel Product 78 south-pole DEM and must not be used as the terrain-horizon input.
 
-**Important repository check:** The model file itself was not present in the GitHub `main` file tree inspected for this notice. The code can also load a URL supplied through `NEXT_PUBLIC_LUNEX_MOON_MODEL_URL`. Confirm the actual URL configured in the final deployment and ensure it points to the cited NASA SVS asset or another separately documented source. The NASA SVS help page states that its content is public domain unless an item is otherwise noted; NASA media usage rules and credit requirements still apply.
+**NASA SVS credits:**
+- NASA's Goddard Space Flight Center
+- Producer: Dan Gallagher (eMITS)
+- Data provider: Ernie Wright (USRA)
+- Data analysts: Tuomas Kankola and Josh Klint (Leadwerks Game Engine)
+- Technical support: Aaron E. Lepsch (ADNET Systems, Inc.)
 
-## 6. Earth Blue Marble texture served from the three-globe example assets
+NASA SVS states that its content is public domain unless an item is otherwise noted. Follow [NASA's media usage guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/) and retain the credit above.
 
-**Asset URL used in source code:**
-[https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg](https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg)
+**Repository/deployment note:** `.gitignore` excludes all `.glb` files, so the binary is not present in the GitHub `main` tree. The homepage falls back to `/models/Moon_NASA_LRO_8k_Topo_Small.glb` unless `NEXT_PUBLIC_LUNEX_MOON_MODEL_URL` is configured. Confirm that the deployed URL resolves to the exact NASA SVS asset before submission. The source attribution is established; the actual production asset URL is not verifiable from this repository.
 
-**Upstream asset directory:** [vasturiano/three-globe — example/img](https://github.com/vasturiano/three-globe/tree/master/example/img)
+## 6. NASA 3D Resources — Earth and Sun model source candidates
 
-**How it contributes:** This image is used as an Earth surface texture in the 3D explorer. The image is an asset distributed in the three-globe example directory; the package's software licence does not automatically replace the image's own source and usage terms. The file is identified as a NASA Blue Marble texture; follow NASA media usage guidance and credit NASA. Do not treat the image as licensed under the LUNEX Apache 2.0 licence.
+The current explorer code contains references to `/models/earth.glb` and `/models/sun.glb`. Those binary files are not present in the GitHub `main` tree, and the repository-wide `.gitignore` excludes `*.glb`. No checksums, creator metadata, source URLs or original licences for those exact local filenames are recorded in the repository. Therefore, their actual source cannot be confirmed from the files available for this audit.
 
-## 7. Fonts loaded from Google Fonts
+NASA publishes official 3D model resources that could be used as documented replacements:
+- **Sun:** [Sun 3D Model Interactive — NASA Science](https://science.nasa.gov/learn/heat/resource/sun-3d-model/). NASA lists a downloadable glTF model (4.14 MB; published 9 September 2023).
+- **Earth:** [Earth with Clouds 3D Model — NASA Science](https://science.nasa.gov/resource/earth-with-clouds-3d-model/). NASA identifies NASA Visualization Technology Applications and Development (VTAD) as the credit and lists a glTF model (18.05 MB).
+- **Earth alternative:** [Earth 3D Model — NASA Science](https://science.nasa.gov/3d-resources/earth/). This page describes an Earth 3D-print model generated using NASA data and a custom texture.
+
+These official NASA pages are candidate replacement sources only. **They are not evidence that the untracked `earth.glb` or `sun.glb` files in the deployed runtime are the same models.** Do not attribute the current runtime files to NASA unless the team verifies the actual files against the chosen NASA downloads or replaces them with those exact downloads.
+
+NASA's 3D Resources collection describes its models as free to download and use; NASA media guidance still applies, including source credit and avoiding any implication of NASA endorsement.
+
+## 7. Legacy Moon model path
+
+`src/components/canvas/MoonViewer.tsx` contains a legacy path to `/models/moon-optimized.glb`. That file is not present in the GitHub `main` tree, and the component was not identified as being imported by the active application routes inspected for this notice. No original source or licence is recorded for that filename. Do not include or serve a `moon-optimized.glb` binary unless its exact creator, source and licence are first documented. The active homepage's separately named NASA SVS Moon model is documented in Section 5.
+
+## 8. Earth Blue Marble texture loaded from three-globe example assets
+
+**Asset URL used in source code:**  
+[https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg](https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg)  
+**Upstream example directory:** [vasturiano/three-globe — example/img](https://github.com/vasturiano/three-globe/tree/master/example/img)
+
+The 360° explorer requests this image as an Earth surface texture. It is an example media file served through the three-globe package CDN; the three-globe software licence does not automatically determine the image's rights. The image is identified in the source as NASA Blue Marble imagery. Credit NASA and comply with [NASA's media usage guidelines](https://www.nasa.gov/nasa-brand-center/images-and-media/). Do not apply the LUNEX Apache 2.0 licence to the image.
+
+## 9. Fonts loaded from Google Fonts
 
 The homepage requests the following font families from Google Fonts:
 - DM Mono — [upstream project](https://github.com/googlefonts/dm-mono)
 - Inter — [upstream project](https://github.com/rsms/inter)
 - Public Sans — [upstream project](https://github.com/uswds/public-sans)
 
-These font families are distributed under the SIL Open Font License 1.1 (OFL-1.1). The fonts are separate third-party works and are not relicensed by the LUNEX Apache 2.0 licence. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+These font families are distributed under the SIL Open Font License 1.1 (OFL-1.1). The fonts are separate third-party works and are not relicensed by the LUNEX Apache 2.0 licence.
 
-## 8. Locally bundled image files awaiting source confirmation
+## 10. Unused local images removed from the current submission tree
 
-The repository contains these additional image files:
+The following files were deleted from the current `main` branch because no references to their filenames were found in the application source inspected for this audit, and their original asset provenance was not established:
 - `public/textures/earth_daymap.jpg`
 - `public/textures/nasa-lunar-crater.webp`
 - `public/textures/quickmap-lroc.png`
 - `nasa-south-pole-test.png`
 
-The current source files inspected did not establish a reliable original source, creator, download URL or licence for these files. Their filenames alone are not adequate provenance. Before final public distribution, identify the exact original source and applicable terms for each file, or remove files that are unused and whose provenance cannot be established.
+This is a source-tree cleanup, not a retrospective licence grant. The `earth_daymap.jpg` filename resembles the Earth Day Map texture offered by [Solar System Scope](https://www.solarsystemscope.com/textures/), whose texture pack is distributed under **CC BY 4.0**; however, the repository did not preserve source metadata or a binary match proving that the deleted file was that exact download. If an Earth Day Map texture is needed later, download the exact official Solar System Scope file and provide the required CC BY 4.0 attribution, or use a source with rights suitable for the NASA Space Apps terms. The deleted lunar crater and QuickMap-named images had no verifiable file-specific source/creator/licence; do not reintroduce them without provenance.
+
+**Git history caveat:** deleting an asset from `main` removes it from the current project snapshot but does not erase the blob from earlier Git commits. The files remain retrievable from the historical commit unless repository history is rewritten.
 
 ## References
 
